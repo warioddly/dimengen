@@ -10,7 +10,7 @@ builders:
   dimengen:
     import: "package:dimengen/dimengen.dart"
     builder_factories: ["dimengenBuilder"]
-    build_extensions: {".dart": [".g.dart"]}
+    build_extensions: {".dart": [".dimengen.g.dart"]}
     auto_apply: dependents
     build_to: source
     applies_builders: ["source_gen"]
