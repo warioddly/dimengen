@@ -2,6 +2,7 @@ name: dimengen
 description: "Flutter Dimensions Generator"
 version: 0.1.0
 homepage: "https://github.com/warioddly/dimengen"
+publish_to: "https://pub.dev"
 
 environment:
   sdk: ^3.8.0
