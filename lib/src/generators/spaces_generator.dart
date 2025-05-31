@@ -2,7 +2,6 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
 import 'package:dimengen/src/exceptions.dart';
-import 'package:dimengen/src/utils/recase.dart';
 import 'package:dimengen/src/utils/resolver.dart';
 import 'package:source_gen/source_gen.dart';
 
