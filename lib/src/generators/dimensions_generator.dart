@@ -6,6 +6,7 @@ import 'package:dimengen/src/generators/borders_generator.dart';
 import 'package:dimengen/src/generators/insets_generator.dart';
 import 'package:dimengen/src/generators/spaces_generator.dart';
 import 'package:source_gen/source_gen.dart';
+import 'package:dimengen/src/utils/header.dart' show defaultHeader;
 
 /// Generates a class with static constants for various dimension configurations.
 class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
@@ -25,6 +26,7 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
 
     final buffer = StringBuffer();
 
+    buffer.writeln(defaultHeader);
     buffer.writeln(
       insetgen.generateForAnnotatedElement(element, annotation, buildStep),
     );

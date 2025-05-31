@@ -1,6 +1,6 @@
 
 /// A header comment for generated files.
-const fileHeader = '''
+const defaultHeader = '''
 //
 // GENERATED FILE — DO NOT MODIFY BY HAND
 // --------------------------------------------------
@@ -10,5 +10,5 @@ const fileHeader = '''
 // Generator: https://pub.dev/packages/dimengen
 // Author: http://github.com/warioddly
 // --------------------------------------------------
-//
+//\n
 ''';

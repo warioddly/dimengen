@@ -2,6 +2,7 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
 import 'package:dimengen/src/exceptions.dart';
+import 'package:dimengen/src/utils/header.dart';
 import 'package:dimengen/src/utils/recase.dart';
 import 'package:dimengen/src/utils/resolver.dart' as resolver;
 import 'package:source_gen/source_gen.dart';
@@ -34,6 +35,7 @@ class InsetsGenerator extends GeneratorForAnnotation<Insetgen> {
 
     final buffer = StringBuffer();
 
+    buffer.writeln(defaultHeader);
     buffer.writeln('abstract class $className {');
     buffer.writeln('  const $className._();\n');
     _generateInsets(element, buffer);
