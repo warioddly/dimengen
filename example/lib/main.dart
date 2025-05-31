@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:dimengen/dimengen.dart';
 
 import 'dimensions.dart';
 
@@ -18,28 +14,31 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _dimengenPlugin = Dimengen();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
 
   @override
   Widget build(BuildContext context) {
-    Dimensions.zero;
-    Insets.zero;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
         body: Container(
+          padding: Insets.m,
+          margin: Insets.m,
           decoration: BoxDecoration(
-            borderRadius: BorderDimensions.m,
+            borderRadius: RadiusDimensions.sTopLeft,
+            color: Colors.blue.shade100,
           ),
-          child: Text('Running on'),
+          child: Column(
+            children: [
+
+              Text('Design Dimensions'),
+              Spaces.mVertical,
+              Text('zero: ${Dimensions.zero}'),
+              Spaces.h(Dimensions.m),
+
+            ],
+          )
         ),
       ),
     );

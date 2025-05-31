@@ -1,7 +1,7 @@
 name: dimengen
-description: "A new Flutter project."
-version: 0.0.1
-homepage:
+description: "Flutter Dimensions Generator"
+version: 0.1.0
+homepage: "https://github.com/warioddly/dimengen"
 
 environment:
   sdk: ^3.8.0
@@ -10,10 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
-  web: ^1.0.0
-  plugin_platform_interface: ^2.0.2
   source_gen: ^2.0.0
   build: ^2.4.2
   analyzer: ^7.4.5
@@ -39,22 +35,7 @@ flutter:
   # This is required for using `dart:ffi`.
   # All these are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
-  plugin:
-    platforms:
-      android:
-        package: com.warioddly.dimengen
-        pluginClass: DimengenPlugin
-      ios:
-        pluginClass: DimengenPlugin
-      linux:
-        pluginClass: DimengenPlugin
-      macos:
-        pluginClass: DimengenPlugin
-      windows:
-        pluginClass: DimengenPluginCApi
-      web:
-        pluginClass: DimengenWeb
-        fileName: dimengen_web.dart
+
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
@@ -86,3 +67,8 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/to/font-from-package
+
+platforms:
+  linux:
+  macos:
+  windows:

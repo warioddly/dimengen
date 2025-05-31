@@ -70,17 +70,16 @@ class InsetsGenerator extends GeneratorForAnnotation<Dimengen> {
       buffer.writeln('static const EdgeInsets ${name}Horizontal = EdgeInsets.symmetric(horizontal: $val);');
 
       for (final e2 in values.entries) {
-        final k1 = name, v1 = val;
         final k2 = e2.key, v2 = e2.value;
 
-        if (k1 == k2) continue;
+        if (name == k2) continue;
 
         final k2PascalCased = k2.pascalCase;
 
-        buffer.writeln('static const EdgeInsets ${k1}Top${k2PascalCased}Bottom = EdgeInsets.only(top: $v1, bottom: $v2);');
-        buffer.writeln('static const EdgeInsets ${k1}Left${k2PascalCased}Right = EdgeInsets.only(left: $v1, right: $v2);');
-        buffer.writeln('static const EdgeInsets ${k1}Top${k2PascalCased}Left = EdgeInsets.only(top: $v1, left: $v2);');
-        buffer.writeln('static const EdgeInsets ${k1}Right${k2PascalCased}Bottom = EdgeInsets.only(right: $v1, bottom: $v2);');
+        buffer.writeln('static const EdgeInsets ${name}Top${k2PascalCased}Bottom = EdgeInsets.only(top: $val, bottom: $v2);');
+        buffer.writeln('static const EdgeInsets ${name}Left${k2PascalCased}Right = EdgeInsets.only(left: $val, right: $v2);');
+        buffer.writeln('static const EdgeInsets ${name}Top${k2PascalCased}Left = EdgeInsets.only(top: $val, left: $v2);');
+        buffer.writeln('static const EdgeInsets ${name}Right${k2PascalCased}Bottom = EdgeInsets.only(right: $val, bottom: $v2);');
       }
 
 

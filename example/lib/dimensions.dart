@@ -3,7 +3,11 @@ import 'package:flutter/cupertino.dart';
 
 part 'dimensions.g.dart';
 
-@Dimengen()
+@Dimengen(
+  insetsName: 'Insets',
+  spacesName: 'Spaces',
+  borderRadiusName: 'RadiusDimensions',
+)
 abstract final class Dimensions {
   Dimensions._();
 
