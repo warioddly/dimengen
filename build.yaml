@@ -1,0 +1,16 @@
+targets:
+  $default:
+    builders:
+      dimengen|dimengen:
+        generate_for:
+          include:
+            - lib/**.dart
+
+builders:
+  dimengen:
+    import: "package:dimengen/dimengen.dart"
+    builder_factories: ["dimengenBuilder"]
+    build_extensions: {".dart": [".g.dart"]}
+    auto_apply: dependents
+    build_to: source
+    applies_builders: ["source_gen"]
