@@ -1,12 +1,9 @@
 # Dimengen — Flutter Dimensions Generator
 
 [![pub version](https://img.shields.io/pub/v/dimengen.svg)](https://pub.dev/packages/dimengen)
-[![build](https://github.com/warioddly/dimengen/actions/workflows/build.yml/badge.svg)](https://github.com/warioddly/dimengen/actions)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **Dimengen** is a SourceGen-based code generator for Flutter that automatically creates `EdgeInsets`, `BorderRadius`, `SizedBox` constants (e.g., `sVerticalMBottom`, `mAll`, `lOnlyLeft`, etc.) based on a custom dimensions class.
-
-> 📦 Define your spacing values once — generate dozens of ready-to-use `EdgeInsets`.
 
 ---
 
@@ -67,10 +64,10 @@ flutter pub run build_runner watch
 
 Why Use Dimengen?
 
-✅ Centralized dimension values
-✅ Automatically generates dozens of EdgeInsets variants
-✅ Promotes clean, reusable, and consistent UI spacing
-✅ Improves code readability and maintainability
+- Centralized dimension values
+- Promotes clean, reusable, and consistent UI spacing
+- Automatically generates dozens of EdgeInsets variants
+- Improves code readability and maintainability
 
 ---
 
