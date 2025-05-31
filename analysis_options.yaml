@@ -2,3 +2,14 @@ include: package:flutter_lints/flutter.yaml
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+linter:
+  rules:
+    - avoid_print
+    - prefer_final_locals
+    - prefer_const_constructors
+    - unnecessary_new
+    - unnecessary_string_interpolations
+    - prefer_single_quotes
+    - avoid_unnecessary_containers
+    - public_member_api_docs

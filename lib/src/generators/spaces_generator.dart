@@ -2,10 +2,11 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
 import 'package:dimengen/src/exceptions.dart';
-import 'package:dimengen/src/utils/resolver.dart';
+import 'package:dimengen/src/utils/resolver.dart' as resolver;
 import 'package:source_gen/source_gen.dart';
 
-class SpacesGenerator extends GeneratorForAnnotation<Dimengen> {
+/// Generates a class with static constants for various spacing configurations.
+class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
 
   @override
   String generateForAnnotatedElement(
@@ -18,16 +19,15 @@ class SpacesGenerator extends GeneratorForAnnotation<Dimengen> {
       throw CanAppliedOnlyForClassError(element);
     }
 
-    final generateSpaces = annotation.read('generateSpaces');
+    final isDimengen = resolver.isDimengen(annotation);
+    final generate = annotation.read(isDimengen ? 'generateSpaces' : 'generate');
 
-    if (generateSpaces.isNull || !generateSpaces.boolValue) {
+    if (generate.isNull || !generate.boolValue) {
       return '';
     }
 
-    final className = resolveClassName(
-      'spacesName',
-      'Spaces',
-      element,
+    final className = resolver.resolveClassName(
+      isDimengen ? 'spacesName' : 'name',
       annotation,
     );
 
@@ -38,7 +38,7 @@ class SpacesGenerator extends GeneratorForAnnotation<Dimengen> {
 
     for (final field in element.fields) {
 
-      if (!canGenerateForField(field)) {
+      if (!resolver.canGenerateForField(field)) {
         continue;
       }
 

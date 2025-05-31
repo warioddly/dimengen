@@ -3,10 +3,11 @@ import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
 import 'package:dimengen/src/exceptions.dart';
 import 'package:dimengen/src/utils/recase.dart';
-import 'package:dimengen/src/utils/resolver.dart';
+import 'package:dimengen/src/utils/resolver.dart' as resolver;
 import 'package:source_gen/source_gen.dart';
 
-class InsetsGenerator extends GeneratorForAnnotation<Dimengen> {
+/// Generates a class with static constants for various insets configurations.
+class InsetsGenerator extends GeneratorForAnnotation<Insetgen> {
 
   @override
   String generateForAnnotatedElement(
@@ -19,16 +20,15 @@ class InsetsGenerator extends GeneratorForAnnotation<Dimengen> {
       throw CanAppliedOnlyForClassError(element);
     }
 
-    final generateInsets = annotation.read('generateInsets');
+    final isDimengen = resolver.isDimengen(annotation);
+    final generate = annotation.read(isDimengen ? 'generateInsets' : 'generate');
 
-    if (generateInsets.isNull || !generateInsets.boolValue) {
+    if (generate.isNull || !generate.boolValue) {
       return '';
     }
 
-    final className = resolveClassName(
-      'insetsName',
-      'Insets',
-      element,
+    final className = resolver.resolveClassName(
+      isDimengen ? 'insetsName' : 'name',
       annotation,
     );
 
@@ -47,7 +47,7 @@ class InsetsGenerator extends GeneratorForAnnotation<Dimengen> {
 
     for (final field in element.fields) {
 
-      if (!canGenerateForField(field)) {
+      if (!resolver.canGenerateForField(field)) {
         continue;
       }
 

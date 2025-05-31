@@ -1,4 +1,5 @@
 
+/// A header comment for generated files.
 const fileHeader = '''
 //
 // GENERATED FILE — DO NOT MODIFY BY HAND

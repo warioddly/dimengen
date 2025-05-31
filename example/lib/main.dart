@@ -1,3 +1,5 @@
+import 'package:dimengen_example/insets.dart';
+import 'package:dimengen_example/spaces.dart';
 import 'package:flutter/material.dart';
 
 import 'dimensions.dart';
@@ -26,7 +28,7 @@ class _MyAppState extends State<MyApp> {
           padding: Insets.m,
           margin: Insets.m,
           decoration: BoxDecoration(
-            borderRadius: RadiusDimensions.sTopLeft,
+            borderRadius: Borders.sTopLeft,
             color: Colors.blue.shade100,
           ),
           child: Column(
@@ -34,7 +36,7 @@ class _MyAppState extends State<MyApp> {
 
               Text('Design Dimensions'),
               Spaces.mVertical,
-              Text('zero: ${Dimensions.zero}'),
+              Text('M: ${Dimensions.m}'),
               Spaces.h(Dimensions.m),
 
             ],
