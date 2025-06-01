@@ -3,11 +3,13 @@
 [![pub version](https://img.shields.io/pub/v/dimengen.svg)](https://pub.dev/packages/dimengen)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Dimengen** is a SourceGen-based code generator for Flutter that automatically creates `EdgeInsets`, `BorderRadius`, `SizedBox` constants (e.g., `sVerticalMBottom`, `mAll`, `lOnlyLeft`, etc.) based on a custom dimensions class.
+**Dimengen** is a powerful code generator for Flutter that automatically creates EdgeInsets, BorderRadius, and SizedBox constants based on your predefined dimension values.
+
+> It helps you centralize spacing and size values, improve UI consistency, and boost code readability and maintainability.
 
 ---
 
-## Example
+## Getting Started
 
 Define your dimension constants inside an annotated class:
 
@@ -22,55 +24,134 @@ abstract final class Dimensions {
 }
 ```
 
-Then you can simply use them like this:
+This generates constants like:
+
+- `Insets.m` → `EdgeInsets.all(16)`
+- `Borders.sTopLeft` → `BorderRadius.only(topLeft: Radius.circular(8))`
+- `Spaces.mVertical` → `SizedBox(height: 16)`
+
+Example usage:
 
 ```
-Padding(
-  padding: DimensionsInsets.sVertical,
-  child: Text('Example'),
+Container(
+  padding: Insets.m,
+  margin: Insets.m,
+  decoration: BoxDecoration(
+    borderRadius: Borders.sTopLeft,
+    color: Colors.blue.shade100,
+  ),
+  child: Column(
+    children: [
+      Text('Design Dimensions'),
+      Spaces.mVertical,
+      Text('M: ${Dimensions.m}'),
+      Spaces.h(Dimensions.m),
+    ],
+  ),
 )
 ```
 
 ---
 
-Installation
+## Modular Generation
+
+Need only specific dimensions? Use separate annotations:
+
+| Annotation      | Generates                          |
+|----------------|-------------------------------------|
+| `@Dimengen()`  | `EdgeInsets`, `BorderRadius`, `SizedBox` (all) |
+| `@Insetgen()`  | Only `EdgeInsets` constants         |
+| `@Bordergen()` | Only `BorderRadius` constants       |
+| `@Spacegen()`  | Only `SizedBox` values (spaces)     |
+
+Example with `@Spacegen`:
+
+```
+import 'package:dimengen/dimengen.dart';
+
+part 'spaces.g.dart';
+
+@Spacegen()
+abstract class _Spaces {
+  _Spaces._();
+
+  static const double m = 24.0;
+}
+```
+
+Generates:
+
+```
+abstract class Spaces {
+  const Spaces._();
+
+  static const SizedBox m = SizedBox.square(dimension: 24.0);
+  static const SizedBox mVertical = SizedBox(height: 24.0);
+  static const SizedBox mHorizontal = SizedBox(width: 24.0);
+
+  static SizedBox h(double value) => SizedBox(height: value);
+  static SizedBox w(double value) => SizedBox(width: value);
+}
+```
+
+---
+
+## Customization
+
+Customize the generated class names and control what is generated:
+
+```
+@Dimengen(
+  spacesName: 'DesignSpaces',
+  generateInsets: false,
+)
+
+// or
+
+@Spacegen(name: 'Gaps')
+```
+
+---
+
+## Installation
 
 Add to your pubspec.yaml:
 
-```yaml
+```
 dependencies:
-  dimengen: ^0.1.0
+  dimengen: ^0.1.1
 
 dev_dependencies:
   build_runner: ^2.4.6
 ```
 
----
+⸻
 
-⚙Code Generation
+## Code Generation
 
-Run:
+Build once:
 
-```bash
+```
 flutter pub run build_runner build
 ```
-Or watch for changes:
 
-```bash
+Watch for changes:
+
+```
 flutter pub run build_runner watch
 ```
 
----
+⸻
 
 Why Use Dimengen?
-
-- Centralized dimension values
-- Promotes clean, reusable, and consistent UI spacing
-- Automatically generates dozens of EdgeInsets variants
-- Improves code readability and maintainability
+- 📐 Centralized dimension values
+- ♻️ Reusable and consistent UI spacing
+- ⚡ Auto-generates dozens of variants
+- 👀 Enhances code clarity and maintainability
 
 ---
 
-🤝 Contributing
+## Contributing
 
-Have suggestions or improvements? Feel free to submit a pull request or open an issue. Contributions are welcome!
+Have suggestions, ideas, or found a bug? Contributions are welcome!
+Open an issue or submit a pull request — we’d love to hear from you.
