@@ -9,4 +9,10 @@ abstract class _Borders {
 
   static const double s = 24.0;
 
+  @take
+  static const BorderRadius sTop = BorderRadius.only(
+    topLeft: Radius.circular(_Borders.s),
+    topRight: Radius.circular(_Borders.s),
+  );
+
 }

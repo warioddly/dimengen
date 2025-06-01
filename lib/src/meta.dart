@@ -82,3 +82,13 @@ class Spacegen {
   final bool generate;
 
 }
+
+/// Metadata for the `@Take` annotation used in the generated class.
+class _Take {
+
+  /// Creates an instance of [Take].
+  const _Take();
+}
+
+/// Metadata for the `@take` annotation used in the generated class.
+const Object take = _Take();

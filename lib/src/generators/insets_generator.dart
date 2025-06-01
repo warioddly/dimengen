@@ -1,7 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
-import 'package:dimengen/src/exceptions.dart';
 import 'package:dimengen/src/utils/header.dart';
 import 'package:dimengen/src/utils/recase.dart';
 import 'package:dimengen/src/utils/resolver.dart' as resolver;
@@ -18,7 +17,10 @@ class InsetsGenerator extends GeneratorForAnnotation<Insetgen> {
   ) {
 
     if (element is! ClassElement) {
-      throw CanAppliedOnlyForClassError(element);
+      throw InvalidGenerationSource(
+        '`@Insetgen` can only be applied to classes',
+        element: element,
+      );
     }
 
     final isDimengen = resolver.isDimengen(annotation);
@@ -35,41 +37,34 @@ class InsetsGenerator extends GeneratorForAnnotation<Insetgen> {
 
     final buffer = StringBuffer();
 
-    buffer.writeln(defaultHeader);
+    if (!isDimengen) {
+      buffer.writeln(defaultHeader);
+    }
+
     buffer.writeln('abstract class $className {');
     buffer.writeln('  const $className._();\n');
     _generateInsets(element, buffer);
-    buffer.writeln('}');
+    buffer.writeln('\n}');
 
     return buffer.toString();
   }
 
   void _generateInsets(ClassElement element, StringBuffer buffer) {
-    final Map<String, double> values = {};
+    const edgeInsetsDeclaration = 'static const EdgeInsets';
 
-    for (final field in element.fields) {
-
-      if (!resolver.canGenerateForField(field)) {
-        continue;
-      }
-
-      final val = field.computeConstantValue()?.toDoubleValue();
-      if (val != null) {
-        values[field.name] = val;
-      }
-    }
+    final values = resolver.getFieldValues(element);
 
     for (final entry in values.entries) {
       final name = entry.key;
       final val = entry.value;
 
-      buffer.writeln('static const EdgeInsets $name = EdgeInsets.all($val);');
-      buffer.writeln('static const EdgeInsets ${name}Top = EdgeInsets.only(top: $val);');
-      buffer.writeln('static const EdgeInsets ${name}Bottom = EdgeInsets.only(bottom: $val);');
-      buffer.writeln('static const EdgeInsets ${name}Left = EdgeInsets.only(left: $val);');
-      buffer.writeln('static const EdgeInsets ${name}Right = EdgeInsets.only(right: $val);');
-      buffer.writeln('static const EdgeInsets ${name}Vertical = EdgeInsets.symmetric(vertical: $val);');
-      buffer.writeln('static const EdgeInsets ${name}Horizontal = EdgeInsets.symmetric(horizontal: $val);');
+      buffer.writeln('$edgeInsetsDeclaration $name = EdgeInsets.all($val);');
+      buffer.writeln('$edgeInsetsDeclaration ${name}Top = EdgeInsets.only(top: $val);');
+      buffer.writeln('$edgeInsetsDeclaration ${name}Bottom = EdgeInsets.only(bottom: $val);');
+      buffer.writeln('$edgeInsetsDeclaration ${name}Left = EdgeInsets.only(left: $val);');
+      buffer.writeln('$edgeInsetsDeclaration ${name}Right = EdgeInsets.only(right: $val);');
+      buffer.writeln('$edgeInsetsDeclaration ${name}Vertical = EdgeInsets.symmetric(vertical: $val);');
+      buffer.writeln('$edgeInsetsDeclaration ${name}Horizontal = EdgeInsets.symmetric(horizontal: $val);');
 
       for (final e2 in values.entries) {
         final k2 = e2.key, v2 = e2.value;
@@ -78,10 +73,10 @@ class InsetsGenerator extends GeneratorForAnnotation<Insetgen> {
 
         final k2PascalCased = k2.pascalCase;
 
-        buffer.writeln('static const EdgeInsets ${name}Top${k2PascalCased}Bottom = EdgeInsets.only(top: $val, bottom: $v2);');
-        buffer.writeln('static const EdgeInsets ${name}Left${k2PascalCased}Right = EdgeInsets.only(left: $val, right: $v2);');
-        buffer.writeln('static const EdgeInsets ${name}Top${k2PascalCased}Left = EdgeInsets.only(top: $val, left: $v2);');
-        buffer.writeln('static const EdgeInsets ${name}Right${k2PascalCased}Bottom = EdgeInsets.only(right: $val, bottom: $v2);');
+        buffer.writeln('$edgeInsetsDeclaration ${name}Top${k2PascalCased}Bottom = EdgeInsets.only(top: $val, bottom: $v2);');
+        buffer.writeln('$edgeInsetsDeclaration ${name}Left${k2PascalCased}Right = EdgeInsets.only(left: $val, right: $v2);');
+        buffer.writeln('$edgeInsetsDeclaration ${name}Top${k2PascalCased}Left = EdgeInsets.only(top: $val, left: $v2);');
+        buffer.writeln('$edgeInsetsDeclaration ${name}Right${k2PascalCased}Bottom = EdgeInsets.only(right: $val, bottom: $v2);');
       }
 
 

@@ -25,3 +25,22 @@ bool canGenerateForField(FieldElement field) {
 bool isDimengen(ConstantReader annotation) {
   return annotation.instanceOf(const TypeChecker.fromRuntime(Dimengen));
 }
+
+
+/// Retrieves the field values from a class element that can be used for dimension generation.
+Map<String, double> getFieldValues(ClassElement element) {
+  final Map<String, double> values = {};
+
+  for (final field in element.fields) {
+    if (!canGenerateForField(field)) {
+      continue;
+    }
+
+    final val = field.computeConstantValue()?.toDoubleValue();
+    if (val != null) {
+      values[field.name] = val;
+    }
+  }
+
+  return values;
+}

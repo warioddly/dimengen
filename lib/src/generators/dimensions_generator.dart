@@ -1,7 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
-import 'package:dimengen/src/exceptions.dart';
 import 'package:dimengen/src/generators/borders_generator.dart';
 import 'package:dimengen/src/generators/insets_generator.dart';
 import 'package:dimengen/src/generators/spaces_generator.dart';
@@ -17,7 +16,10 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
     BuildStep buildStep,
   ) {
     if (element is! ClassElement) {
-      throw CanAppliedOnlyForClassError(element);
+      throw InvalidGenerationSource(
+        '`@Dimengen` can only be applied to classes',
+        element: element,
+      );
     }
 
     final insetgen = InsetsGenerator();
@@ -28,13 +30,25 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
 
     buffer.writeln(defaultHeader);
     buffer.writeln(
-      insetgen.generateForAnnotatedElement(element, annotation, buildStep),
+      insetgen.generateForAnnotatedElement(
+        element,
+        annotation,
+        buildStep,
+      ),
     );
     buffer.writeln(
-      bordergen.generateForAnnotatedElement(element, annotation, buildStep),
+      bordergen.generateForAnnotatedElement(
+        element,
+        annotation,
+        buildStep,
+      ),
     );
     buffer.writeln(
-      spacegen.generateForAnnotatedElement(element, annotation, buildStep),
+      spacegen.generateForAnnotatedElement(
+        element,
+        annotation,
+        buildStep,
+      ),
     );
 
     return buffer.toString();

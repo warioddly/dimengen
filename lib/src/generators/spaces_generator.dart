@@ -1,7 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
-import 'package:dimengen/src/exceptions.dart';
 import 'package:dimengen/src/utils/header.dart';
 import 'package:dimengen/src/utils/resolver.dart' as resolver;
 import 'package:source_gen/source_gen.dart';
@@ -17,7 +16,10 @@ class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
   ) {
 
     if (element is! ClassElement) {
-      throw CanAppliedOnlyForClassError(element);
+      throw InvalidGenerationSource(
+        '`@Spacegen` can only be applied to classes',
+        element: element,
+      );
     }
 
     final isDimengen = resolver.isDimengen(annotation);
@@ -34,9 +36,14 @@ class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
 
     final buffer = StringBuffer();
 
-    buffer.writeln(defaultHeader);
+    if (!isDimengen) {
+      buffer.writeln(defaultHeader);
+    }
+
     buffer.writeln('abstract class $className {');
     buffer.writeln('  const $className._();\n');
+
+    const sizedBoxDeclaration = 'static const SizedBox';
 
     for (final field in element.fields) {
 
@@ -46,16 +53,16 @@ class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
 
       final val = field.computeConstantValue()?.toDoubleValue();
       if (val != null) {
-        buffer.writeln('static const SizedBox ${field.name} = SizedBox.square(dimension: $val);');
-        buffer.writeln('static const SizedBox ${field.name}Vertical = SizedBox(height: $val);');
-        buffer.writeln('static const SizedBox ${field.name}Horizontal = SizedBox(width: $val);');
+        buffer.writeln('$sizedBoxDeclaration ${field.name} = SizedBox.square(dimension: $val);');
+        buffer.writeln('$sizedBoxDeclaration ${field.name}Vertical = SizedBox(height: $val);');
+        buffer.writeln('$sizedBoxDeclaration ${field.name}Horizontal = SizedBox(width: $val);');
       }
     }
 
+    buffer.writeln('\n');
     buffer.writeln('static SizedBox h(double value) => SizedBox(height: value);');
     buffer.writeln('static SizedBox w(double value) => SizedBox(width: value);');
-
-    buffer.writeln('}');
+    buffer.writeln('\n}');
 
     return buffer.toString();
   }
