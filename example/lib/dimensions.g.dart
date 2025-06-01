@@ -262,6 +262,7 @@ abstract class DesignSpaces {
   static const SizedBox l = SizedBox.square(dimension: 24.0);
   static const SizedBox lVertical = SizedBox(height: 24.0);
   static const SizedBox lHorizontal = SizedBox(width: 24.0);
+
   static SizedBox h(double value) => SizedBox(height: value);
   static SizedBox w(double value) => SizedBox(width: value);
 }

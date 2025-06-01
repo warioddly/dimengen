@@ -62,4 +62,13 @@ abstract class Borders {
     topRight: Radius.circular(24.0),
     bottomLeft: Radius.circular(24.0),
   );
+
+  static const BorderRadius customTakeProperty = BorderRadius.only(
+    topLeft: Radius.circular(_Borders.s),
+    topRight: Radius.circular(_Borders.s),
+  );
+
+  static String hello() => 'Hello World!';
+
+  static get getBorder => BorderRadius.all(Radius.circular(_Borders.s));
 }

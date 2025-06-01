@@ -10,9 +10,15 @@ abstract class _Borders {
   static const double s = 24.0;
 
   @take
-  static const BorderRadius sTop = BorderRadius.only(
+  static const BorderRadius customTakeProperty = BorderRadius.only(
     topLeft: Radius.circular(_Borders.s),
     topRight: Radius.circular(_Borders.s),
   );
+
+  @take
+  static String hello() => 'Hello World!';
+
+  @take
+  static get getBorder => BorderRadius.all(Radius.circular(_Borders.s));
 
 }

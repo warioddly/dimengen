@@ -5,6 +5,8 @@ targets:
         generate_for:
           include:
             - lib/**.dart
+        options:
+          parse_ast: true
 
 builders:
   dimengen:

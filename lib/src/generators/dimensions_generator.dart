@@ -10,11 +10,11 @@ import 'package:dimengen/src/utils/header.dart' show defaultHeader;
 /// Generates a class with static constants for various dimension configurations.
 class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
   @override
-  String generateForAnnotatedElement(
+  Future<String> generateForAnnotatedElement(
     Element element,
     ConstantReader annotation,
     BuildStep buildStep,
-  ) {
+  ) async {
     if (element is! ClassElement) {
       throw InvalidGenerationSource(
         '`@Dimengen` can only be applied to classes',
@@ -28,28 +28,15 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
 
     final buffer = StringBuffer();
 
+
+    final result = await Future.wait([
+      insetgen.generateForAnnotatedElement(element, annotation, buildStep),
+      bordergen.generateForAnnotatedElement(element, annotation, buildStep),
+      spacegen.generateForAnnotatedElement(element, annotation, buildStep),
+    ]);
+
     buffer.writeln(defaultHeader);
-    buffer.writeln(
-      insetgen.generateForAnnotatedElement(
-        element,
-        annotation,
-        buildStep,
-      ),
-    );
-    buffer.writeln(
-      bordergen.generateForAnnotatedElement(
-        element,
-        annotation,
-        buildStep,
-      ),
-    );
-    buffer.writeln(
-      spacegen.generateForAnnotatedElement(
-        element,
-        annotation,
-        buildStep,
-      ),
-    );
+    buffer.writeln(result.join('\n\n'));
 
     return buffer.toString();
   }

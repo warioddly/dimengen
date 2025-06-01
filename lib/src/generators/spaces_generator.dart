@@ -1,6 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
+import 'package:dimengen/src/generators/take_generator.dart';
 import 'package:dimengen/src/utils/header.dart';
 import 'package:dimengen/src/utils/resolver.dart' as resolver;
 import 'package:source_gen/source_gen.dart';
@@ -9,11 +10,11 @@ import 'package:source_gen/source_gen.dart';
 class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
 
   @override
-  String generateForAnnotatedElement(
+  Future<String> generateForAnnotatedElement(
     Element element,
     ConstantReader annotation,
     BuildStep buildStep,
-  ) {
+  ) async {
 
     if (element is! ClassElement) {
       throw InvalidGenerationSource(
@@ -62,6 +63,10 @@ class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
     buffer.writeln('\n');
     buffer.writeln('static SizedBox h(double value) => SizedBox(height: value);');
     buffer.writeln('static SizedBox w(double value) => SizedBox(width: value);');
+
+    final taken = await TakeGenerator.generate(buildStep);
+    buffer.writeln('\n$taken');
+
     buffer.writeln('\n}');
 
     return buffer.toString();

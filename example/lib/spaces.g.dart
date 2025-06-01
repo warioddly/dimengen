@@ -20,6 +20,7 @@ abstract class Spaces {
   static const SizedBox m = SizedBox.square(dimension: 24.0);
   static const SizedBox mVertical = SizedBox(height: 24.0);
   static const SizedBox mHorizontal = SizedBox(width: 24.0);
+
   static SizedBox h(double value) => SizedBox(height: value);
   static SizedBox w(double value) => SizedBox(width: value);
 }
