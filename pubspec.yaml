@@ -1,8 +1,7 @@
 name: dimengen
-description: "Flutter Dimensions Generator"
-version: 0.1.1
+description: "Flutter Dimensions Generator (it helps you centralize spacing and size values, improve UI consistency, and boost code readability and maintainability)"
+version: 0.2.0
 homepage: "https://github.com/warioddly/dimengen"
-
 
 environment:
   sdk: ^3.8.0
@@ -21,14 +20,10 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.15
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 topics:
   - dimensions
   - generator
-  - dimengen
+  - sizes
   - uikit
   - gen
 
