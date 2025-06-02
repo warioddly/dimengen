@@ -1,24 +1,23 @@
 name: dimengen
 description: "Flutter Dimensions Generator (it helps you centralize spacing and size values, improve UI consistency, and boost code readability and maintainability)"
-version: 0.2.1
+version: 0.3.0
 homepage: "https://github.com/warioddly/dimengen"
 
 environment:
   sdk: ^3.2.0
-  flutter: '>=3.3.0'
 
 dependencies:
   flutter:
     sdk: flutter
   source_gen: ^2.0.0
   build: ^2.4.2
-  analyzer: ^7.4.5
+  analyzer: ^6.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  build_runner: ^2.4.15
+  build_runner: ^2.4.13
 
 topics:
   - dimensions
