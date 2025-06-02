@@ -4,7 +4,7 @@ version: 0.2.0
 homepage: "https://github.com/warioddly/dimengen"
 
 environment:
-  sdk: ^3.8.0
+  sdk: ^3.2.0
   flutter: '>=3.3.0'
 
 dependencies:

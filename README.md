@@ -118,11 +118,13 @@ Customize the generated class names and control what is generated:
 Add to your pubspec.yaml:
 
 ```
-dependencies:
-  dimengen: ^0.1.1
+dart pub add dimengen
+```
 
-dev_dependencies:
-  build_runner: ^2.4.6
+and `build_runner` as dev dependencies
+
+```
+dart pub add --dev build_runner
 ```
 
 ⸻
