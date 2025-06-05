@@ -1,7 +1,8 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
-import 'package:dimengen/src/generators/take_generator.dart';
+import 'package:dimengen/src/templates/spaces_template.dart';
+import 'package:dimengen/src/utils/extractor.dart';
 import 'package:dimengen/src/utils/header.dart';
 import 'package:dimengen/src/utils/resolver.dart' as resolver;
 import 'package:source_gen/source_gen.dart';
@@ -36,6 +37,7 @@ class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
     );
 
     final buffer = StringBuffer();
+    final template = SpacesTemplate();
 
     if (!isDimengen) {
       buffer.writeln(defaultHeader);
@@ -44,27 +46,14 @@ class SpacesGenerator extends GeneratorForAnnotation<Spacegen> {
     buffer.writeln('abstract class $className {');
     buffer.writeln('  const $className._();\n');
 
-    const sizedBoxDeclaration = 'static const SizedBox';
+    final fields = {
+      ...await extractFinalValues(buildStep),
+      ...extractElementValues(element),
+    };
 
-    for (final field in element.fields) {
+    buffer.writeln(template.generateFor(fields));
 
-      if (!resolver.canGenerateForField(field)) {
-        continue;
-      }
-
-      final val = field.computeConstantValue()?.toDoubleValue();
-      if (val != null) {
-        buffer.writeln('$sizedBoxDeclaration ${field.name} = SizedBox.square(dimension: $val);');
-        buffer.writeln('$sizedBoxDeclaration ${field.name}Vertical = SizedBox(height: $val);');
-        buffer.writeln('$sizedBoxDeclaration ${field.name}Horizontal = SizedBox(width: $val);');
-      }
-    }
-
-    buffer.writeln('\n');
-    buffer.writeln('static SizedBox h(double value) => SizedBox(height: value);');
-    buffer.writeln('static SizedBox w(double value) => SizedBox(width: value);');
-
-    final taken = await TakeGenerator.generate(buildStep);
+    final taken = await extractTakeSource(buildStep);
     buffer.writeln('\n$taken');
 
     buffer.writeln('\n}');

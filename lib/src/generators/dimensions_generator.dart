@@ -28,15 +28,15 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
 
     final buffer = StringBuffer();
 
-
     final result = await Future.wait([
       insetgen.generateForAnnotatedElement(element, annotation, buildStep),
       bordergen.generateForAnnotatedElement(element, annotation, buildStep),
       spacegen.generateForAnnotatedElement(element, annotation, buildStep),
     ]);
 
-    buffer.writeln(defaultHeader);
-    buffer.writeln(result.join('\n\n'));
+    buffer
+      ..writeln(defaultHeader)
+      ..writeln(result.join('\n\n'));
 
     return buffer.toString();
   }
