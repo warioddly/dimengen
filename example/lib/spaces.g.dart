@@ -23,4 +23,5 @@ abstract class Spaces {
 
   static SizedBox h(double value) => SizedBox(height: value);
   static SizedBox w(double value) => SizedBox(width: value);
+  static SizedBox square(double value) => SizedBox.square(dimension: value);
 }
