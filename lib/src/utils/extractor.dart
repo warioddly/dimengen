@@ -29,9 +29,9 @@ Future<Map<String, String>> extractFinalValues(BuildStep buildStep) async {
 
   final ast = parseString(content: result).unit;
 
-  for (final declarations in ast.declarations) {
-    if (declarations is ClassDeclaration) {
-      for (final member in declarations.members) {
+  for (final declaration in ast.declarations) {
+    if (declaration is ClassDeclaration) {
+      for (final member in declaration.members) {
         if (member is FieldDeclaration) {
           for (final variable in member.fields.variables
               .where((variable) => variable.isFinal)) {
