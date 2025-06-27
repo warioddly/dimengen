@@ -1,5 +1,5 @@
 import 'package:dimengen/src/templates/_template.dart';
-import 'package:dimengen/src/utils/recase.dart';
+import 'package:dimengen/src/utils/string_re_case_extensions.dart';
 
 /// Template for generating border radius configurations.
 class BordersTemplate extends Template {
