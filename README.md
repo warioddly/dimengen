@@ -153,6 +153,17 @@ Why Use Dimengen?
 
 ---
 
+## Snippet generation
+After every `build_runner` run two files are produced automatically:
+
+* `.vscode/dimengen.code-snippets`
+* `.idea/liveTemplates/DimensionsTemplates.xml`
+
+Import them into your IDE (VS Code or Android Studio) and use
+`d16`, `in16`, `sp16` … abbreviations instead of magic numbers.
+
+---
+
 ## Contributing
 
 Have suggestions, ideas, or found a bug? Contributions are welcome!

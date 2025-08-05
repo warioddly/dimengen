@@ -1,4 +1,5 @@
 import 'package:build/build.dart';
+import 'package:dimengen/src/builder/snippet_builder.dart';
 import 'package:dimengen/src/generators/borders_generator.dart';
 import 'package:dimengen/src/generators/spaces_generator.dart';
 import 'package:dimengen/src/generators/dimensions_generator.dart';
@@ -18,3 +19,5 @@ Builder dimengenBuilder(BuilderOptions options) {
     'dimengen',
   );
 }
+
+Builder snippetBuilder(BuilderOptions options) => DimengenSnippetBuilder();
