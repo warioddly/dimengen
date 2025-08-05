@@ -55,11 +55,15 @@ class DimengenSnippetBuilder implements Builder {
   @override
   Future<void> build(BuildStep step) async {
     final generator = SnippetGenerator();
-    await for (final input in step.findAssets(Glob('lib/**.dart'))) {
-      final content = await step.readAsString(input);
-      if (!content.contains('@Dimengen')) continue;
-      final unit = parseString(content: content).unit;
-      generator.processUnit(unit);
+    // Обрабатываем файлы из lib и example/lib
+    final globs = [Glob('lib/**.dart'), Glob('example/lib/**.dart')];
+    for (final glob in globs) {
+      await for (final input in step.findAssets(glob)) {
+        final content = await step.readAsString(input);
+        if (!content.contains('@Dimengen')) continue;
+        final unit = parseString(content: content).unit;
+        generator.processUnit(unit);
+      }
     }
     generator.finalize();
     if (generator.json.isEmpty) return;
