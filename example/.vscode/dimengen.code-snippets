@@ -1,107 +1,107 @@
 {
   "d8": {
     "prefix": "d8",
-    "body": "Dimensions.s",
-    "description": "Dimensions.s (8.0)"
+    "body": "Dimensions.small",
+    "description": "Dimensions.small (8.0)"
   },
   "in8": {
     "prefix": "in8",
-    "body": "Insets.s",
-    "description": "Insets.s (8.0)"
+    "body": "Insets.small",
+    "description": "Insets.small (8.0)"
   },
   "iv8": {
     "prefix": "iv8",
-    "body": "Insets.sVertical",
-    "description": "Insets.sVertical (8.0)"
+    "body": "Insets.smallVertical",
+    "description": "Insets.smallVertical (8.0)"
   },
   "ih8": {
     "prefix": "ih8",
-    "body": "Insets.sHorizontal",
-    "description": "Insets.sHorizontal (8.0)"
+    "body": "Insets.smallHorizontal",
+    "description": "Insets.smallHorizontal (8.0)"
   },
   "sp8": {
     "prefix": "sp8",
-    "body": "Spaces.s",
-    "description": "Spaces.s (8.0)"
+    "body": "Spaces.small",
+    "description": "Spaces.small (8.0)"
   },
   "sv8": {
     "prefix": "sv8",
-    "body": "Spaces.sVertical",
-    "description": "Spaces.sVertical (8.0)"
+    "body": "Spaces.smallVertical",
+    "description": "Spaces.smallVertical (8.0)"
   },
   "sh8": {
     "prefix": "sh8",
-    "body": "Spaces.sHorizontal",
-    "description": "Spaces.sHorizontal (8.0)"
+    "body": "Spaces.smallHorizontal",
+    "description": "Spaces.smallHorizontal (8.0)"
   },
   "d16": {
     "prefix": "d16",
-    "body": "Dimensions.m",
-    "description": "Dimensions.m (16.0)"
+    "body": "Dimensions.medium",
+    "description": "Dimensions.medium (16.0)"
   },
   "in16": {
     "prefix": "in16",
-    "body": "Insets.m",
-    "description": "Insets.m (16.0)"
+    "body": "Insets.medium",
+    "description": "Insets.medium (16.0)"
   },
   "iv16": {
     "prefix": "iv16",
-    "body": "Insets.mVertical",
-    "description": "Insets.mVertical (16.0)"
+    "body": "Insets.mediumVertical",
+    "description": "Insets.mediumVertical (16.0)"
   },
   "ih16": {
     "prefix": "ih16",
-    "body": "Insets.mHorizontal",
-    "description": "Insets.mHorizontal (16.0)"
+    "body": "Insets.mediumHorizontal",
+    "description": "Insets.mediumHorizontal (16.0)"
   },
   "sp16": {
     "prefix": "sp16",
-    "body": "Spaces.m",
-    "description": "Spaces.m (16.0)"
+    "body": "Spaces.medium",
+    "description": "Spaces.medium (16.0)"
   },
   "sv16": {
     "prefix": "sv16",
-    "body": "Spaces.mVertical",
-    "description": "Spaces.mVertical (16.0)"
+    "body": "Spaces.mediumVertical",
+    "description": "Spaces.mediumVertical (16.0)"
   },
   "sh16": {
     "prefix": "sh16",
-    "body": "Spaces.mHorizontal",
-    "description": "Spaces.mHorizontal (16.0)"
+    "body": "Spaces.mediumHorizontal",
+    "description": "Spaces.mediumHorizontal (16.0)"
   },
-  "d24": {
-    "prefix": "d24",
-    "body": "Dimensions.l",
-    "description": "Dimensions.l (24.0)"
+  "d32": {
+    "prefix": "d32",
+    "body": "Dimensions.large",
+    "description": "Dimensions.large (32.0)"
   },
-  "in24": {
-    "prefix": "in24",
-    "body": "Insets.l",
-    "description": "Insets.l (24.0)"
+  "in32": {
+    "prefix": "in32",
+    "body": "Insets.large",
+    "description": "Insets.large (32.0)"
   },
-  "iv24": {
-    "prefix": "iv24",
-    "body": "Insets.lVertical",
-    "description": "Insets.lVertical (24.0)"
+  "iv32": {
+    "prefix": "iv32",
+    "body": "Insets.largeVertical",
+    "description": "Insets.largeVertical (32.0)"
   },
-  "ih24": {
-    "prefix": "ih24",
-    "body": "Insets.lHorizontal",
-    "description": "Insets.lHorizontal (24.0)"
+  "ih32": {
+    "prefix": "ih32",
+    "body": "Insets.largeHorizontal",
+    "description": "Insets.largeHorizontal (32.0)"
   },
-  "sp24": {
-    "prefix": "sp24",
-    "body": "Spaces.l",
-    "description": "Spaces.l (24.0)"
+  "sp32": {
+    "prefix": "sp32",
+    "body": "Spaces.large",
+    "description": "Spaces.large (32.0)"
   },
-  "sv24": {
-    "prefix": "sv24",
-    "body": "Spaces.lVertical",
-    "description": "Spaces.lVertical (24.0)"
+  "sv32": {
+    "prefix": "sv32",
+    "body": "Spaces.largeVertical",
+    "description": "Spaces.largeVertical (32.0)"
   },
-  "sh24": {
-    "prefix": "sh24",
-    "body": "Spaces.lHorizontal",
-    "description": "Spaces.lHorizontal (24.0)"
+  "sh32": {
+    "prefix": "sh32",
+    "body": "Spaces.largeHorizontal",
+    "description": "Spaces.largeHorizontal (32.0)"
   }
 }

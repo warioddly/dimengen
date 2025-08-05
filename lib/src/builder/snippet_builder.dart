@@ -1,9 +1,47 @@
 import 'dart:convert';
-
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:build/build.dart';
 import 'package:glob/glob.dart';
+
+/// Вынесенная логика генерации сниппетов
+class SnippetGenerator {
+  final Map<String, dynamic> json = {};
+  final StringBuffer xml = StringBuffer('<templateSet group="Dimensions">\n');
+
+  void add(String key, String body, String value) {
+    json[key] = {'prefix': key, 'body': body, 'description': '$body ($value)'};
+    xml.writeln('  <template name="$key" value="$body" description="$body ($value)"'
+        '<context><option name="DART_EXPRESSION" value="true"/></context>'
+        '</template>');
+  }
+
+  void processUnit(CompilationUnit unit) {
+    for (var c in unit.declarations.whereType<ClassDeclaration>()) {
+      // Генерируем сниппеты только для классов с аннотацией @DimengenSnippets
+      if (!c.metadata.any((m) => m.name.name == 'DimengenSnippets')) continue;
+      for (var f in c.members.whereType<FieldDeclaration>()) {
+        if (!f.isStatic || !f.fields.isConst) continue;
+        for (var v in f.fields.variables) {
+          final name = v.name.lexeme;
+          final value = v.initializer?.toString() ?? '';
+          final num = value.split('.').first;
+          add('d$num', 'Dimensions.$name', value);
+          add('in$num', 'Insets.$name', value);
+          add('iv$num', 'Insets.${name}Vertical', value);
+          add('ih$num', 'Insets.${name}Horizontal', value);
+          add('sp$num', 'Spaces.$name', value);
+          add('sv$num', 'Spaces.${name}Vertical', value);
+          add('sh$num', 'Spaces.${name}Horizontal', value);
+        }
+      }
+    }
+  }
+
+  void finalize() {
+    xml.writeln('</templateSet>');
+  }
+}
 
 class DimengenSnippetBuilder implements Builder {
   @override
@@ -16,62 +54,19 @@ class DimengenSnippetBuilder implements Builder {
 
   @override
   Future<void> build(BuildStep step) async {
-    final json = <String, dynamic>{};
-    final xml = StringBuffer('<templateSet group="Dimensions">\n');
-
-    void add(String key, String body, String value) {
-      json[key] = {
-        'prefix': key,
-        'body': body,
-        'description': '$body ($value)'
-      };
-      xml.writeln(
-          '  <template name="$key" value="$body" description="$body ($value)">'+
-          '<context><option name="DART_EXPRESSION" value="true"/></context>'+
-          '</template>');
-    }
-
+    final generator = SnippetGenerator();
     await for (final input in step.findAssets(Glob('lib/**.dart'))) {
       final content = await step.readAsString(input);
       if (!content.contains('@Dimengen')) continue;
-
       final unit = parseString(content: content).unit;
-
-      for (var c in unit.declarations.whereType<ClassDeclaration>()) {
-        if (!c.metadata.any((m) => m.name.name == 'Dimengen')) continue;
-
-        for (var f in c.members.whereType<FieldDeclaration>()) {
-          if (!f.isStatic || !f.fields.isConst) continue;
-          for (var v in f.fields.variables) {
-            final name = v.name.lexeme;
-            final value = v.initializer?.toString() ?? '';
-            final num = value.split('.').first;
-
-            // Dimensions
-            add('d$num', 'Dimensions.$name', value);
-            // Insets
-            add('in$num', 'Insets.$name', value);
-            add('iv$num', 'Insets.${name}Vertical', value);
-            add('ih$num', 'Insets.${name}Horizontal', value);
-            // Spaces
-            add('sp$num', 'Spaces.$name', value);
-            add('sv$num', 'Spaces.${name}Vertical', value);
-            add('sh$num', 'Spaces.${name}Horizontal', value);
-          }
-        }
-      }
+      generator.processUnit(unit);
     }
-
-    xml.writeln('</templateSet>');
-
-    if (json.isEmpty) return;
-
+    generator.finalize();
+    if (generator.json.isEmpty) return;
+    await step.writeAsString(AssetId(step.inputId.package, '.vscode/dimengen.code-snippets'),
+        const JsonEncoder.withIndent('  ').convert(generator.json));
     await step.writeAsString(
-        AssetId(step.inputId.package, '.vscode/dimengen.code-snippets'),
-        const JsonEncoder.withIndent('  ').convert(json));
-    await step.writeAsString(
-        AssetId(step.inputId.package,
-            '.idea/liveTemplates/DimensionsTemplates.xml'),
-        xml.toString());
+        AssetId(step.inputId.package, '.idea/liveTemplates/DimensionsTemplates.xml'),
+        generator.xml.toString());
   }
 }
