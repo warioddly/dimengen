@@ -143,7 +143,37 @@ Watch for changes:
 flutter pub run build_runner watch
 ```
 
-⸻
+---
+
+## Build configuration
+
+To control what is generated, configure your `build.yaml`:
+
+Generate only main dimension files (no snippets):
+```yaml
+targets:
+  $default:
+    builders:
+      dimengen|dimengen:
+        enabled: true
+      dimengen|snippet_builder:
+        enabled: false
+```
+
+Generate both dimension files and snippets:
+```yaml
+targets:
+  $default:
+    builders:
+      dimengen|dimengen:
+        enabled: true
+      dimengen|snippet_builder:
+        enabled: true
+```
+
+You can also remove the `snippet_builder` section entirely if you do not need snippets.
+
+---
 
 Why Use Dimengen?
 - 📐 Centralized dimension values
@@ -164,9 +194,6 @@ After every `build_runner` run, two files are produced automatically:
 Snippets are generated only for classes marked with the annotation `@DimengenSnippets()`:
 
 ```dart
-class DimengenSnippets {
-  const DimengenSnippets();
-}
 
 @DimengenSnippets()
 class Dimensions {

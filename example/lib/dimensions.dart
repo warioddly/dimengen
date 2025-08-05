@@ -3,10 +3,8 @@ import 'package:flutter/cupertino.dart';
 
 part 'dimensions.g.dart';
 
-@Dimengen(
-  spacesName: 'DesignSpaces',
-  generateInsets: false,
-)
+@Dimengen(spacesName: 'DesignSpaces', generateInsets: false)
+@DimengenSnippets()
 abstract final class Dimensions {
   Dimensions._();
 
