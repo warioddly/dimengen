@@ -10,8 +10,8 @@ Map<String, String> extractElementValues(ClassElement element) {
   for (final field in element.fields) {
     if ((field.type.isDartCoreDouble || field.type.isDartCoreInt)) {
       final val = field.computeConstantValue()?.toDoubleValue();
-      if (val != null) {
-        values[field.name] = '$val';
+      if (val != null && field.name != null) {
+        values[field.name!] = '$val';
       }
     }
   }
@@ -33,13 +33,11 @@ Future<Map<String, String>> extractFinalValues(BuildStep buildStep) async {
     if (declaration is ClassDeclaration) {
       for (final member in declaration.members) {
         if (member is FieldDeclaration) {
-          for (final variable in member.fields.variables
-              .where((variable) => variable.isFinal)) {
+          for (final variable in member.fields.variables.where((variable) => variable.isFinal)) {
             if (variable.isFinal) {
               final initializer = variable.initializer;
 
-              final isValidType =
-                  initializer is IntegerLiteral || initializer is DoubleLiteral;
+              final isValidType = initializer is IntegerLiteral || initializer is DoubleLiteral;
 
               if (isValidType) {
                 final name = variable.name.lexeme;
@@ -53,8 +51,7 @@ Future<Map<String, String>> extractFinalValues(BuildStep buildStep) async {
           if (body is ExpressionFunctionBody) {
             final expression = body.expression;
 
-            final isValidType =
-                expression is IntegerLiteral || expression is DoubleLiteral;
+            final isValidType = expression is IntegerLiteral || expression is DoubleLiteral;
 
             if (isValidType) {
               final name = member.name.lexeme;
@@ -71,7 +68,6 @@ Future<Map<String, String>> extractFinalValues(BuildStep buildStep) async {
 
 /// Extracts the source code of fields and methods annotated with `@take`.
 Future<String> extractTakeSource(BuildStep buildStep) async {
-
   final buffer = StringBuffer();
   final inputId = buildStep.inputId;
 
