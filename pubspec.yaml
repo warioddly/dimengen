@@ -4,14 +4,14 @@ version: 0.4.0
 homepage: "https://github.com/warioddly/dimengen"
 
 environment:
-  sdk: ^3.2.0
+  sdk: '>3.2.0 <=4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   source_gen: ^2.0.0
   build: ^2.4.2
-  analyzer: ^6.5.0
+  analyzer: '>=6.9.0 <8.0.0'
 
 dev_dependencies:
   flutter_test:

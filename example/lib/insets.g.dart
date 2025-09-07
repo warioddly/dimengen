@@ -24,19 +24,13 @@ abstract class Insets {
   static const EdgeInsets mRight = EdgeInsets.only(right: 16.0);
   static const EdgeInsets mVertical = EdgeInsets.symmetric(vertical: 16.0);
   static const EdgeInsets mHorizontal = EdgeInsets.symmetric(horizontal: 16.0);
-  static const EdgeInsets mTopLBottom = EdgeInsets.only(
-    top: 16.0,
-    bottom: 24.0,
-  );
-  static const EdgeInsets mLeftLRight = EdgeInsets.only(
-    left: 16.0,
-    right: 24.0,
-  );
+  static const EdgeInsets mTopLBottom =
+      EdgeInsets.only(top: 16.0, bottom: 24.0);
+  static const EdgeInsets mLeftLRight =
+      EdgeInsets.only(left: 16.0, right: 24.0);
   static const EdgeInsets mTopLLeft = EdgeInsets.only(top: 16.0, left: 24.0);
-  static const EdgeInsets mRightLBottom = EdgeInsets.only(
-    right: 16.0,
-    bottom: 24.0,
-  );
+  static const EdgeInsets mRightLBottom =
+      EdgeInsets.only(right: 16.0, bottom: 24.0);
   static const EdgeInsets l = EdgeInsets.all(24.0);
   static const EdgeInsets lTop = EdgeInsets.only(top: 24.0);
   static const EdgeInsets lBottom = EdgeInsets.only(bottom: 24.0);
@@ -44,17 +38,11 @@ abstract class Insets {
   static const EdgeInsets lRight = EdgeInsets.only(right: 24.0);
   static const EdgeInsets lVertical = EdgeInsets.symmetric(vertical: 24.0);
   static const EdgeInsets lHorizontal = EdgeInsets.symmetric(horizontal: 24.0);
-  static const EdgeInsets lTopMBottom = EdgeInsets.only(
-    top: 24.0,
-    bottom: 16.0,
-  );
-  static const EdgeInsets lLeftMRight = EdgeInsets.only(
-    left: 24.0,
-    right: 16.0,
-  );
+  static const EdgeInsets lTopMBottom =
+      EdgeInsets.only(top: 24.0, bottom: 16.0);
+  static const EdgeInsets lLeftMRight =
+      EdgeInsets.only(left: 24.0, right: 16.0);
   static const EdgeInsets lTopMLeft = EdgeInsets.only(top: 24.0, left: 16.0);
-  static const EdgeInsets lRightMBottom = EdgeInsets.only(
-    right: 24.0,
-    bottom: 16.0,
-  );
+  static const EdgeInsets lRightMBottom =
+      EdgeInsets.only(right: 24.0, bottom: 16.0);
 }

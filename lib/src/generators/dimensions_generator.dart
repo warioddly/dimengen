@@ -1,11 +1,14 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:dimengen/dimengen.dart';
-import 'package:dimengen/src/generators/borders_generator.dart';
-import 'package:dimengen/src/generators/insets_generator.dart';
-import 'package:dimengen/src/generators/spaces_generator.dart';
-import 'package:source_gen/source_gen.dart';
+import 'package:dimengen/src/generators/_generator.dart';
+import 'package:dimengen/src/templates/_template.dart';
+import 'package:dimengen/src/templates/borders_template.dart';
+import 'package:dimengen/src/templates/insets_template.dart';
+import 'package:dimengen/src/templates/spaces_template.dart';
+import 'package:dimengen/src/utils/extractor.dart';
 import 'package:dimengen/src/utils/header.dart' show defaultHeader;
+import 'package:source_gen/source_gen.dart' hide Generator;
 
 /// Generates a class with static constants for various dimension configurations.
 class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
@@ -15,26 +18,19 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) async {
-    if (element is! ClassElement) {
-      throw InvalidGenerationSource(
-        '`@Dimengen` can only be applied to classes',
-        element: element,
-      );
-    }
+    thowInvalidSourceError(element, 'Dimengen');
 
-    final insetgen = InsetsGenerator();
-    final spacegen = SpacesGenerator();
-    final bordergen = BordersGenerator();
+    final fields = {
+      ...await extractFinalValues(buildStep),
+      ...extractElementValues(element as ClassElement),
+    };
 
-    final buffer = StringBuffer();
+    final result = [
+      for (final template in <Template>[InsetsTemplate(), SpacesTemplate(), BordersTemplate()])
+        template.generateFor(fields),
+    ];
 
-    final result = await Future.wait([
-      insetgen.generateForAnnotatedElement(element, annotation, buildStep),
-      bordergen.generateForAnnotatedElement(element, annotation, buildStep),
-      spacegen.generateForAnnotatedElement(element, annotation, buildStep),
-    ]);
-
-    buffer
+    final buffer = StringBuffer()
       ..writeln(defaultHeader)
       ..writeln(result.join('\n\n'));
 

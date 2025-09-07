@@ -68,30 +68,3 @@ Future<Map<String, String>> extractFinalValues(BuildStep buildStep) async {
 
   return values;
 }
-
-/// Extracts the source code of fields and methods annotated with `@take`.
-Future<String> extractTakeSource(BuildStep buildStep) async {
-
-  final buffer = StringBuffer();
-  final inputId = buildStep.inputId;
-
-  final parsed = await buildStep.resolver.compilationUnitFor(inputId);
-  final result = parsed.toSource();
-
-  final ast = parseString(content: result).unit;
-
-  for (final declaration in ast.declarations) {
-    if (declaration is ClassDeclaration) {
-      for (final member in declaration.members) {
-        final hasTake = member.metadata.any((m) => m.name.name == 'take');
-
-        if ((member is FieldDeclaration || member is MethodDeclaration) && hasTake) {
-          final source = member.toSource().replaceAll('@take', '');
-          buffer.writeln('\n$source\n');
-        }
-      }
-    }
-  }
-
-  return buffer.toString();
-}
