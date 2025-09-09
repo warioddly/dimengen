@@ -17,4 +17,4 @@ String resolveClassName(
 
 /// Checks if the annotation is an instance of Dimengen.
 bool isDimengen(ConstantReader annotation) =>
-    annotation.instanceOf(const TypeChecker.fromRuntime(Dimengen));
+    annotation.instanceOf(const TypeChecker.typeNamed(Dimengen));
