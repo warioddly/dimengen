@@ -6,7 +6,7 @@ import 'package:dimengen/src/utils/header.dart';
 import 'package:dimengen/src/utils/resolver.dart';
 import 'package:source_gen/source_gen.dart';
 
-void thowInvalidSourceError(Element element, String className) {
+void throwInvalidSourceError(Element element, String className) {
   if (element is! ClassElement) {
     throw InvalidGenerationSource(
       '`@$className` can only be applied to classes',
@@ -27,7 +27,7 @@ abstract class Generator<T> extends GeneratorForAnnotation<T> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) async {
-    thowInvalidSourceError(element, metaName);
+    throwInvalidSourceError(element, metaName);
 
     final className = resolveClassName('name', annotation);
 

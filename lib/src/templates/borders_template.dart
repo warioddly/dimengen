@@ -3,53 +3,43 @@ import 'package:dimengen/src/utils/recase.dart';
 
 /// Template for generating border radius configurations.
 class BordersTemplate extends Template {
-
-  static const _templates = <String, String>{
-    '': 'BorderRadius.all({val})',
-    'Top': 'BorderRadius.only(topLeft: {val}, topRight: {val})',
-    'Bottom': 'BorderRadius.only(bottomLeft: {val}, bottomRight: {val})',
-    'Left': 'BorderRadius.only(topLeft: {val}, bottomLeft: {val})',
-    'Right': 'BorderRadius.only(topRight: {val}, bottomRight: {val})',
-    'Vertical': 'BorderRadius.vertical(top: {val}, bottom: {val})',
-    'Horizontal': 'BorderRadius.horizontal(left: {val}, right: {val})',
-    'TopLeft': 'BorderRadius.only(topLeft: {val})',
-    'TopRight': 'BorderRadius.only(topRight: {val})',
-    'BottomLeft': 'BorderRadius.only(bottomLeft: {val})',
-    'BottomRight': 'BorderRadius.only(bottomRight: {val})',
-    'TopLeftBottomRight': 'BorderRadius.only(topLeft: {val}, bottomRight: {val})',
-    'TopRightBottomLeft': 'BorderRadius.only(topRight: {val}, bottomLeft: {val})',
-  };
-
   @override
-  String generateFor(Map<String, String> values) {
-
+  String generateFor(Map<String, String> fields) {
     final buffer = StringBuffer();
 
-    for (final entry in values.entries) {
+    for (final entry in fields.entries) {
       final name = entry.key;
       final val = 'Radius.circular(${entry.value})';
 
-      for (final tpl in _templates.entries) {
-        final suffix = tpl.key;
-        final template = tpl.value.replaceAll('{val}', val);
-        buffer.writeln('static const BorderRadius $name$suffix = $template;');
-      }
-    }
+      buffer
+        ..writeln('static const BorderRadius $name = BorderRadius.all($val);')
+        ..writeln('static const BorderRadius ${name}Top = BorderRadius.only(topLeft: $val, topRight: $val);')
+        ..writeln('static const BorderRadius ${name}Bottom = BorderRadius.only(bottomLeft: $val, bottomRight: $val);')
+        ..writeln('static const BorderRadius ${name}Left = BorderRadius.only(topLeft: $val, bottomLeft: $val);')
+        ..writeln('static const BorderRadius ${name}Right = BorderRadius.only(topRight: $val, bottomRight: $val);')
+        ..writeln('static const BorderRadius ${name}Vertical = BorderRadius.vertical(top: $val, bottom: $val);')
+        ..writeln('static const BorderRadius ${name}Horizontal = BorderRadius.horizontal(left: $val, right: $val);')
+        ..writeln('static const BorderRadius ${name}TopLeft = BorderRadius.only(topLeft: $val);')
+        ..writeln('static const BorderRadius ${name}TopRight = BorderRadius.only(topRight: $val);')
+        ..writeln('static const BorderRadius ${name}BottomLeft = BorderRadius.only(bottomLeft: $val);')
+        ..writeln('static const BorderRadius ${name}BottomRight = BorderRadius.only(bottomRight: $val);')
+        ..writeln('static const BorderRadius ${name}TopLeftBottomRight = BorderRadius.only(topLeft: $val, bottomRight: $val);')
+        ..writeln('static const BorderRadius ${name}TopRightBottomLeft = BorderRadius.only(topRight: $val, bottomLeft: $val);');
 
-    final keys = values.keys.toList();
-    for (var i = 0; i < keys.length; i++) {
-      for (var j = 0; j < keys.length; j++) {
-        if (i == j) continue;
+      for (final e2 in fields.entries) {
+        final k1 = name;
+        final k2 = e2.key, v2 = 'Radius.circular(${e2.value})';
 
-        final k1 = keys[i];
-        final k2 = keys[j].pascalCase;
-        final v1 = 'Radius.circular(${values[k1]})';
-        final v2 = 'Radius.circular(${values[keys[j]]})';
+        if (k1 == k2) continue;
 
-        buffer.writeln('static const BorderRadius ${k1}Top${k2}Left = BorderRadius.only(topLeft: $v1, topRight: $v2);');
-        buffer.writeln('static const BorderRadius ${k1}Right${k2}Bottom = BorderRadius.only(topRight: $v1, bottomLeft: $v2);');
-        buffer.writeln('static const BorderRadius ${k1}Top${k2}Right = BorderRadius.only(topLeft: $v1, bottomRight: $v2);');
-        buffer.writeln('static const BorderRadius ${k1}Bottom${k2}Bottom = BorderRadius.only(bottomLeft: $v1, bottomRight: $v2);');
+        final k2PascalCased = k2.pascalCase;
+
+        buffer
+          ..writeln('static const BorderRadius ${k1}Top${k2PascalCased}Left = BorderRadius.only(topLeft: $val, topRight: $v2);')
+          ..writeln('static const BorderRadius ${k1}Right${k2PascalCased}Bottom = BorderRadius.only(topRight: $val, bottomLeft: $v2);')
+          ..writeln('static const BorderRadius ${k1}Top${k2PascalCased}Right = BorderRadius.only(topLeft: $val, bottomRight: $v2);')
+          ..writeln('static const BorderRadius ${k1}Bottom${k2PascalCased}Bottom = BorderRadius.only(bottomLeft: $val, bottomRight: $v2);');
+
       }
     }
 

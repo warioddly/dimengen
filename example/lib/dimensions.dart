@@ -5,6 +5,7 @@ part 'dimensions.g.dart';
 
 @Dimengen(
   spacesName: 'DesignSpaces',
+  insetsName: 'Insets'
 )
 abstract final class Dimensions {
   Dimensions._();

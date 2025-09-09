@@ -8,6 +8,8 @@ import 'package:dimengen/src/templates/insets_template.dart';
 import 'package:dimengen/src/templates/spaces_template.dart';
 import 'package:dimengen/src/utils/extractor.dart';
 import 'package:dimengen/src/utils/header.dart' show defaultHeader;
+import 'package:dimengen/src/utils/recase.dart';
+import 'package:dimengen/src/utils/resolver.dart';
 import 'package:source_gen/source_gen.dart' hide Generator;
 
 /// Generates a class with static constants for various dimension configurations.
@@ -18,17 +20,44 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
     ConstantReader annotation,
     BuildStep buildStep,
   ) async {
-    thowInvalidSourceError(element, 'Dimengen');
+    throwInvalidSourceError(element, 'Dimengen');
 
     final fields = {
       ...await extractFinalValues(buildStep),
       ...extractElementValues(element as ClassElement),
     };
 
+    String generate(Template template, String clazz) {
+      final generateClass = annotation.read('generate${clazz.pascalCase}');
+
+      if (!generateClass.boolValue) {
+        return '';
+      }
+
+      final className = resolveClassName('${clazz}Name', annotation);
+
+      final buffer = StringBuffer();
+
+      buffer
+        ..writeln('''
+        abstract class $className {
+            const $className._();\n
+      ''')
+        ..writeln(template.generateFor(fields))
+        ..writeln('\n}');
+
+      return buffer.toString();
+    }
+
     final result = [
-      for (final template in <Template>[InsetsTemplate(), SpacesTemplate(), BordersTemplate()])
-        template.generateFor(fields),
+      generate(InsetsTemplate(), 'insets'),
+      generate(SpacesTemplate(), 'spaces'),
+      generate(BordersTemplate(), 'borders'),
     ];
+
+    if (result.isEmpty) {
+      return '';
+    }
 
     final buffer = StringBuffer()
       ..writeln(defaultHeader)
