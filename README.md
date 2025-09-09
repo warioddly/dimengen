@@ -143,13 +143,72 @@ Watch for changes:
 flutter pub run build_runner watch
 ```
 
-⸻
+---
+
+## Build configuration
+
+To control what is generated, configure your `build.yaml`:
+
+Generate only main dimension files (no snippets):
+```yaml
+targets:
+  $default:
+    builders:
+      dimengen|dimengen:
+        enabled: true
+      dimengen|snippet_builder:
+        enabled: false
+```
+
+Generate both dimension files and snippets:
+```yaml
+targets:
+  $default:
+    builders:
+      dimengen|dimengen:
+        enabled: true
+      dimengen|snippet_builder:
+        enabled: true
+```
+
+You can also remove the `snippet_builder` section entirely if you do not need snippets.
+
+---
 
 Why Use Dimengen?
 - 📐 Centralized dimension values
 - ♻️ Reusable and consistent UI spacing
 - ⚡ Auto-generates dozens of variants
 - 👀 Enhances code clarity and maintainability
+
+---
+
+
+## Snippet generation
+After every `build_runner` run, two files are produced automatically:
+
+* `.vscode/dimengen.code-snippets`
+* `.idea/liveTemplates/DimensionsTemplates.xml`
+
+### How to enable snippet generation
+Snippets are generated only for classes marked with the annotation `@DimengenSnippets()`:
+
+```dart
+
+@DimengenSnippets()
+class Dimensions {
+  static const double small = 8.0;
+  static const double medium = 16.0;
+  static const double large = 32.0;
+}
+```
+
+Classes without this annotation will be ignored by the snippet builder.
+
+Import the generated files into your IDE (VS Code or Android Studio) and use
+`d16`, `in16`, `sp16` … abbreviations instead of magic numbers.
+
+> ⚠️ Snippet import for Android Studio is not tested yet. Please report your experience!
 
 ---
 

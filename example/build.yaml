@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      dimengen|dimengen:
+        enabled: true
+      dimengen|snippet_builder:
+        enabled: true

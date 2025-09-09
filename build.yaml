@@ -1,18 +1,26 @@
 targets:
   $default:
+    sources:
+      - lib/**.dart
     builders:
-      dimengen:
-        generate_for:
-          include:
-            - lib/**.dart
-        options:
-          parse_ast: true
+      dimengen|dimengen:
+        enabled: true
+      dimengen|snippet_builder:
+        enabled: true
 
 builders:
   dimengen:
     import: "package:dimengen/builder.dart"
     builder_factories: ["dimengenBuilder"]
-    build_extensions: {".dart": ["dimengen.g.part"]}
+    build_extensions: {".dart": [".g.dart"]}
     auto_apply: dependents
-    build_to: cache
-    applies_builders: ["source_gen|combining_builder"]
+    build_to: source
+    runs_before: ["source_gen|combining_builder"]
+
+  snippet_builder:
+    import: "package:dimengen/builder.dart"
+    builder_factories: ["snippetBuilder"]
+    build_extensions: {r"$package$": [".vscode/dimengen.code-snippets", ".idea/liveTemplates/DimensionsTemplates.xml"]}
+    auto_apply: dependents
+    build_to: source
+    runs_before: ["source_gen|combining_builder"]
