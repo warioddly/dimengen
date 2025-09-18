@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 part 'insets.g.dart';
 
-@Insetgen(generate: true)
+@Insetgen()
 abstract class _Insets {
   _Insets._();
 

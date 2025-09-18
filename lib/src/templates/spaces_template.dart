@@ -6,14 +6,11 @@ class SpacesTemplate extends Template {
   String generateFor(Map<String, String> values) {
     final buffer = StringBuffer();
 
-    for (final field in values.entries) {
-      final name = field.key;
-      final val = field.value;
-
+    for (final MapEntry(:key, :value) in values.entries) {
       buffer
-        ..writeln('static const SizedBox $name = SizedBox.square(dimension: $val);')
-        ..writeln('static const SizedBox ${name}Vertical = SizedBox(height: $val);')
-        ..writeln('static const SizedBox ${name}Horizontal = SizedBox(width: $val);');
+        ..writeln('static const SizedBox $key = SizedBox.square(dimension: $value);')
+        ..writeln('static const SizedBox ${key}Vertical = SizedBox(height: $value);')
+        ..writeln('static const SizedBox ${key}Horizontal = SizedBox(width: $value);');
     }
 
     buffer

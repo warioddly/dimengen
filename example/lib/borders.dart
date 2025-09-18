@@ -17,17 +17,9 @@ abstract class _Borders extends Border {
   final int xl = 28;
   static const double s = 24.0;
 
-  @take
   static const BorderRadius customTakeProperty = BorderRadius.only(
     topLeft: Radius.circular(_Borders.s),
     topRight: Radius.circular(_Borders.s),
   );
-
-
-  @take
-  static String hello() => 'Hello World!';
-
-  @take
-  static get getBorder => BorderRadius.all(Radius.circular(_Borders.s));
 
 }

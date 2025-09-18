@@ -4,10 +4,10 @@ import 'package:dimengen/src/utils/recase.dart';
 /// Template for generating inset configurations.
 class InsetsTemplate extends Template {
   @override
-  String generateFor(Map<String, String> values) {
+  String generateFor(Map<String, String> fields) {
     final buffer = StringBuffer();
 
-    for (final entry in values.entries) {
+    for (final entry in fields.entries) {
       final name = entry.key;
       final val = entry.value;
 
@@ -20,7 +20,7 @@ class InsetsTemplate extends Template {
         ..writeln('static const EdgeInsets ${name}Vertical = EdgeInsets.symmetric(vertical: $val);')
         ..writeln('static const EdgeInsets ${name}Horizontal = EdgeInsets.symmetric(horizontal: $val);');
 
-      for (final e2 in values.entries) {
+      for (final e2 in fields.entries) {
         final k2 = e2.key, v2 = e2.value;
 
         if (name == k2) continue;

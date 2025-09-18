@@ -4,10 +4,10 @@ import 'package:dimengen/src/utils/recase.dart';
 /// Template for generating border radius configurations.
 class BordersTemplate extends Template {
   @override
-  String generateFor(Map<String, String> values) {
+  String generateFor(Map<String, String> fields) {
     final buffer = StringBuffer();
 
-    for (final entry in values.entries) {
+    for (final entry in fields.entries) {
       final name = entry.key;
       final val = 'Radius.circular(${entry.value})';
 
@@ -26,7 +26,7 @@ class BordersTemplate extends Template {
         ..writeln('static const BorderRadius ${name}TopLeftBottomRight = BorderRadius.only(topLeft: $val, bottomRight: $val);')
         ..writeln('static const BorderRadius ${name}TopRightBottomLeft = BorderRadius.only(topRight: $val, bottomLeft: $val);');
 
-      for (final e2 in values.entries) {
+      for (final e2 in fields.entries) {
         final k1 = name;
         final k2 = e2.key, v2 = 'Radius.circular(${e2.value})';
 
