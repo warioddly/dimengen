@@ -7,42 +7,57 @@ class BordersTemplate extends Template {
   String generateFor(Map<String, String> fields) {
     final buffer = StringBuffer();
 
-    for (final entry in fields.entries) {
-      final name = entry.key;
-      final val = 'Radius.circular(${entry.value})';
-
-      buffer
-        ..writeln('static const BorderRadius $name = BorderRadius.all($val);')
-        ..writeln('static const BorderRadius ${name}Top = BorderRadius.only(topLeft: $val, topRight: $val);')
-        ..writeln('static const BorderRadius ${name}Bottom = BorderRadius.only(bottomLeft: $val, bottomRight: $val);')
-        ..writeln('static const BorderRadius ${name}Left = BorderRadius.only(topLeft: $val, bottomLeft: $val);')
-        ..writeln('static const BorderRadius ${name}Right = BorderRadius.only(topRight: $val, bottomRight: $val);')
-        ..writeln('static const BorderRadius ${name}Vertical = BorderRadius.vertical(top: $val, bottom: $val);')
-        ..writeln('static const BorderRadius ${name}Horizontal = BorderRadius.horizontal(left: $val, right: $val);')
-        ..writeln('static const BorderRadius ${name}TopLeft = BorderRadius.only(topLeft: $val);')
-        ..writeln('static const BorderRadius ${name}TopRight = BorderRadius.only(topRight: $val);')
-        ..writeln('static const BorderRadius ${name}BottomLeft = BorderRadius.only(bottomLeft: $val);')
-        ..writeln('static const BorderRadius ${name}BottomRight = BorderRadius.only(bottomRight: $val);')
-        ..writeln('static const BorderRadius ${name}TopLeftBottomRight = BorderRadius.only(topLeft: $val, bottomRight: $val);')
-        ..writeln('static const BorderRadius ${name}TopRightBottomLeft = BorderRadius.only(topRight: $val, bottomLeft: $val);');
-
-      for (final e2 in fields.entries) {
-        final k1 = name;
-        final k2 = e2.key, v2 = 'Radius.circular(${e2.value})';
-
-        if (k1 == k2) continue;
-
-        final k2PascalCased = k2.pascalCase;
-
-        buffer
-          ..writeln('static const BorderRadius ${k1}Top${k2PascalCased}Left = BorderRadius.only(topLeft: $val, topRight: $v2);')
-          ..writeln('static const BorderRadius ${k1}Right${k2PascalCased}Bottom = BorderRadius.only(topRight: $val, bottomLeft: $v2);')
-          ..writeln('static const BorderRadius ${k1}Top${k2PascalCased}Right = BorderRadius.only(topLeft: $val, bottomRight: $v2);')
-          ..writeln('static const BorderRadius ${k1}Bottom${k2PascalCased}Bottom = BorderRadius.only(bottomLeft: $val, bottomRight: $v2);');
-
-      }
+    for (final MapEntry(:key, :value) in fields.entries) {
+      final radiusValue = _formatRadius(value);
+      _generateSingleBorders(buffer, key, radiusValue);
+      _generateCombinedBorders(buffer, key, radiusValue, fields);
     }
 
     return buffer.toString();
+  }
+
+  /// Formats the radius value as Radius.circular(...).
+  String _formatRadius(String value) => 'Radius.circular($value)';
+
+  /// Generates single-value border radius configurations.
+  void _generateSingleBorders(StringBuffer buffer, String name, String val) {
+    buffer
+      ..writeln('static const BorderRadius $name = .all($val);')
+      ..writeln('static const BorderRadius ${name}Top = .only(topLeft: $val, topRight: $val);')
+      ..writeln('static const BorderRadius ${name}Bottom = .only(bottomLeft: $val, bottomRight: $val);')
+      ..writeln('static const BorderRadius ${name}Left = .only(topLeft: $val, bottomLeft: $val);')
+      ..writeln('static const BorderRadius ${name}Right = .only(topRight: $val, bottomRight: $val);')
+      ..writeln('static const BorderRadius ${name}Vertical = .vertical(top: $val, bottom: $val);')
+      ..writeln('static const BorderRadius ${name}Horizontal = .horizontal(left: $val, right: $val);')
+      ..writeln('static const BorderRadius ${name}TopLeft = .only(topLeft: $val);')
+      ..writeln('static const BorderRadius ${name}TopRight = .only(topRight: $val);')
+      ..writeln('static const BorderRadius ${name}BottomLeft = .only(bottomLeft: $val);')
+      ..writeln('static const BorderRadius ${name}BottomRight = .only(bottomRight: $val);')
+      ..writeln('static const BorderRadius ${name}TopLeftBottomRight = .only(topLeft: $val, bottomRight: $val);')
+      ..writeln('static const BorderRadius ${name}TopRightBottomLeft = .only(topRight: $val, bottomLeft: $val);');
+  }
+
+  /// Generates combined border radius configurations using two different values.
+  void _generateCombinedBorders(StringBuffer buffer, String name, String val, Map<String, String> fields) {
+    for (final MapEntry(:key, :value) in fields.entries) {
+      if (name == key) continue;
+
+      final pascalName = key.pascalCase;
+      final radiusValue = _formatRadius(value);
+
+      buffer
+        ..writeln(
+          'static const BorderRadius ${name}Top${pascalName}Left = .only(topLeft: $val, topRight: $radiusValue);',
+        )
+        ..writeln(
+          'static const BorderRadius ${name}Right${pascalName}Bottom = .only(topRight: $val, bottomLeft: $radiusValue);',
+        )
+        ..writeln(
+          'static const BorderRadius ${name}Top${pascalName}Right = .only(topLeft: $val, bottomRight: $radiusValue);',
+        )
+        ..writeln(
+          'static const BorderRadius ${name}Bottom${pascalName}Bottom = .only(bottomLeft: $val, bottomRight: $radiusValue);',
+        );
+    }
   }
 }
