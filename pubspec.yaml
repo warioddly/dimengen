@@ -1,6 +1,6 @@
 name: dimengen
 description: "Flutter Dimensions Generator (it helps you centralize spacing and size values, improve UI consistency, and boost code readability and maintainability)"
-version: 0.6.0
+version: 1.0.0
 homepage: "https://github.com/warioddly/dimengen"
 
 environment:
