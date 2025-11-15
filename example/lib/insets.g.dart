@@ -17,32 +17,26 @@ part of 'insets.dart';
 abstract class Insets {
   const Insets._();
 
-  static const EdgeInsets m = EdgeInsets.all(16.0);
-  static const EdgeInsets mTop = EdgeInsets.only(top: 16.0);
-  static const EdgeInsets mBottom = EdgeInsets.only(bottom: 16.0);
-  static const EdgeInsets mLeft = EdgeInsets.only(left: 16.0);
-  static const EdgeInsets mRight = EdgeInsets.only(right: 16.0);
-  static const EdgeInsets mVertical = EdgeInsets.symmetric(vertical: 16.0);
-  static const EdgeInsets mHorizontal = EdgeInsets.symmetric(horizontal: 16.0);
-  static const EdgeInsets mTopLBottom =
-      EdgeInsets.only(top: 16.0, bottom: 24.0);
-  static const EdgeInsets mLeftLRight =
-      EdgeInsets.only(left: 16.0, right: 24.0);
-  static const EdgeInsets mTopLLeft = EdgeInsets.only(top: 16.0, left: 24.0);
-  static const EdgeInsets mRightLBottom =
-      EdgeInsets.only(right: 16.0, bottom: 24.0);
-  static const EdgeInsets l = EdgeInsets.all(24.0);
-  static const EdgeInsets lTop = EdgeInsets.only(top: 24.0);
-  static const EdgeInsets lBottom = EdgeInsets.only(bottom: 24.0);
-  static const EdgeInsets lLeft = EdgeInsets.only(left: 24.0);
-  static const EdgeInsets lRight = EdgeInsets.only(right: 24.0);
-  static const EdgeInsets lVertical = EdgeInsets.symmetric(vertical: 24.0);
-  static const EdgeInsets lHorizontal = EdgeInsets.symmetric(horizontal: 24.0);
-  static const EdgeInsets lTopMBottom =
-      EdgeInsets.only(top: 24.0, bottom: 16.0);
-  static const EdgeInsets lLeftMRight =
-      EdgeInsets.only(left: 24.0, right: 16.0);
-  static const EdgeInsets lTopMLeft = EdgeInsets.only(top: 24.0, left: 16.0);
-  static const EdgeInsets lRightMBottom =
-      EdgeInsets.only(right: 24.0, bottom: 16.0);
+  static const EdgeInsets m = .all(16.0);
+  static const EdgeInsets mTop = .only(top: 16.0);
+  static const EdgeInsets mBottom = .only(bottom: 16.0);
+  static const EdgeInsets mLeft = .only(left: 16.0);
+  static const EdgeInsets mRight = .only(right: 16.0);
+  static const EdgeInsets mVertical = .symmetric(vertical: 16.0);
+  static const EdgeInsets mHorizontal = .symmetric(horizontal: 16.0);
+  static const EdgeInsets mTopLBottom = .only(top: 16.0, bottom: 24.0);
+  static const EdgeInsets mLeftLRight = .only(left: 16.0, right: 24.0);
+  static const EdgeInsets mTopLLeft = .only(top: 16.0, left: 24.0);
+  static const EdgeInsets mRightLBottom = .only(right: 16.0, bottom: 24.0);
+  static const EdgeInsets l = .all(24.0);
+  static const EdgeInsets lTop = .only(top: 24.0);
+  static const EdgeInsets lBottom = .only(bottom: 24.0);
+  static const EdgeInsets lLeft = .only(left: 24.0);
+  static const EdgeInsets lRight = .only(right: 24.0);
+  static const EdgeInsets lVertical = .symmetric(vertical: 24.0);
+  static const EdgeInsets lHorizontal = .symmetric(horizontal: 24.0);
+  static const EdgeInsets lTopMBottom = .only(top: 24.0, bottom: 16.0);
+  static const EdgeInsets lLeftMRight = .only(left: 24.0, right: 16.0);
+  static const EdgeInsets lTopMLeft = .only(top: 24.0, left: 16.0);
+  static const EdgeInsets lRightMBottom = .only(right: 24.0, bottom: 16.0);
 }

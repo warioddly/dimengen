@@ -17,200 +17,360 @@ part of 'borders.dart';
 abstract class Borders {
   const Borders._();
 
-  static const BorderRadius m = BorderRadius.all(Radius.circular(16.0));
-  static const BorderRadius mTop = BorderRadius.only(
-      topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0));
-  static const BorderRadius mBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(16.0), bottomRight: Radius.circular(16.0));
-  static const BorderRadius mLeft = BorderRadius.only(
-      topLeft: Radius.circular(16.0), bottomLeft: Radius.circular(16.0));
-  static const BorderRadius mRight = BorderRadius.only(
-      topRight: Radius.circular(16.0), bottomRight: Radius.circular(16.0));
-  static const BorderRadius mVertical = BorderRadius.vertical(
-      top: Radius.circular(16.0), bottom: Radius.circular(16.0));
-  static const BorderRadius mHorizontal = BorderRadius.horizontal(
-      left: Radius.circular(16.0), right: Radius.circular(16.0));
-  static const BorderRadius mTopLeft =
-      BorderRadius.only(topLeft: Radius.circular(16.0));
-  static const BorderRadius mTopRight =
-      BorderRadius.only(topRight: Radius.circular(16.0));
-  static const BorderRadius mBottomLeft =
-      BorderRadius.only(bottomLeft: Radius.circular(16.0));
-  static const BorderRadius mBottomRight =
-      BorderRadius.only(bottomRight: Radius.circular(16.0));
-  static const BorderRadius mTopLeftBottomRight = BorderRadius.only(
-      topLeft: Radius.circular(16.0), bottomRight: Radius.circular(16.0));
-  static const BorderRadius mTopRightBottomLeft = BorderRadius.only(
-      topRight: Radius.circular(16.0), bottomLeft: Radius.circular(16.0));
-  static const BorderRadius mTopXslLeft = BorderRadius.only(
-      topLeft: Radius.circular(16.0), topRight: Radius.circular(22));
-  static const BorderRadius mRightXslBottom = BorderRadius.only(
-      topRight: Radius.circular(16.0), bottomLeft: Radius.circular(22));
-  static const BorderRadius mTopXslRight = BorderRadius.only(
-      topLeft: Radius.circular(16.0), bottomRight: Radius.circular(22));
-  static const BorderRadius mBottomXslBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(16.0), bottomRight: Radius.circular(22));
-  static const BorderRadius mTopXlLeft = BorderRadius.only(
-      topLeft: Radius.circular(16.0), topRight: Radius.circular(28));
-  static const BorderRadius mRightXlBottom = BorderRadius.only(
-      topRight: Radius.circular(16.0), bottomLeft: Radius.circular(28));
-  static const BorderRadius mTopXlRight = BorderRadius.only(
-      topLeft: Radius.circular(16.0), bottomRight: Radius.circular(28));
-  static const BorderRadius mBottomXlBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(16.0), bottomRight: Radius.circular(28));
-  static const BorderRadius mTopSLeft = BorderRadius.only(
-      topLeft: Radius.circular(16.0), topRight: Radius.circular(24.0));
-  static const BorderRadius mRightSBottom = BorderRadius.only(
-      topRight: Radius.circular(16.0), bottomLeft: Radius.circular(24.0));
-  static const BorderRadius mTopSRight = BorderRadius.only(
-      topLeft: Radius.circular(16.0), bottomRight: Radius.circular(24.0));
-  static const BorderRadius mBottomSBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(16.0), bottomRight: Radius.circular(24.0));
-  static const BorderRadius xsl = BorderRadius.all(Radius.circular(22));
-  static const BorderRadius xslTop = BorderRadius.only(
-      topLeft: Radius.circular(22), topRight: Radius.circular(22));
-  static const BorderRadius xslBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(22), bottomRight: Radius.circular(22));
-  static const BorderRadius xslLeft = BorderRadius.only(
-      topLeft: Radius.circular(22), bottomLeft: Radius.circular(22));
-  static const BorderRadius xslRight = BorderRadius.only(
-      topRight: Radius.circular(22), bottomRight: Radius.circular(22));
-  static const BorderRadius xslVertical = BorderRadius.vertical(
-      top: Radius.circular(22), bottom: Radius.circular(22));
-  static const BorderRadius xslHorizontal = BorderRadius.horizontal(
-      left: Radius.circular(22), right: Radius.circular(22));
-  static const BorderRadius xslTopLeft =
-      BorderRadius.only(topLeft: Radius.circular(22));
-  static const BorderRadius xslTopRight =
-      BorderRadius.only(topRight: Radius.circular(22));
-  static const BorderRadius xslBottomLeft =
-      BorderRadius.only(bottomLeft: Radius.circular(22));
-  static const BorderRadius xslBottomRight =
-      BorderRadius.only(bottomRight: Radius.circular(22));
-  static const BorderRadius xslTopLeftBottomRight = BorderRadius.only(
-      topLeft: Radius.circular(22), bottomRight: Radius.circular(22));
-  static const BorderRadius xslTopRightBottomLeft = BorderRadius.only(
-      topRight: Radius.circular(22), bottomLeft: Radius.circular(22));
-  static const BorderRadius xslTopMLeft = BorderRadius.only(
-      topLeft: Radius.circular(22), topRight: Radius.circular(16.0));
-  static const BorderRadius xslRightMBottom = BorderRadius.only(
-      topRight: Radius.circular(22), bottomLeft: Radius.circular(16.0));
-  static const BorderRadius xslTopMRight = BorderRadius.only(
-      topLeft: Radius.circular(22), bottomRight: Radius.circular(16.0));
-  static const BorderRadius xslBottomMBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(22), bottomRight: Radius.circular(16.0));
-  static const BorderRadius xslTopXlLeft = BorderRadius.only(
-      topLeft: Radius.circular(22), topRight: Radius.circular(28));
-  static const BorderRadius xslRightXlBottom = BorderRadius.only(
-      topRight: Radius.circular(22), bottomLeft: Radius.circular(28));
-  static const BorderRadius xslTopXlRight = BorderRadius.only(
-      topLeft: Radius.circular(22), bottomRight: Radius.circular(28));
-  static const BorderRadius xslBottomXlBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(22), bottomRight: Radius.circular(28));
-  static const BorderRadius xslTopSLeft = BorderRadius.only(
-      topLeft: Radius.circular(22), topRight: Radius.circular(24.0));
-  static const BorderRadius xslRightSBottom = BorderRadius.only(
-      topRight: Radius.circular(22), bottomLeft: Radius.circular(24.0));
-  static const BorderRadius xslTopSRight = BorderRadius.only(
-      topLeft: Radius.circular(22), bottomRight: Radius.circular(24.0));
-  static const BorderRadius xslBottomSBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(22), bottomRight: Radius.circular(24.0));
-  static const BorderRadius xl = BorderRadius.all(Radius.circular(28));
-  static const BorderRadius xlTop = BorderRadius.only(
-      topLeft: Radius.circular(28), topRight: Radius.circular(28));
-  static const BorderRadius xlBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(28), bottomRight: Radius.circular(28));
-  static const BorderRadius xlLeft = BorderRadius.only(
-      topLeft: Radius.circular(28), bottomLeft: Radius.circular(28));
-  static const BorderRadius xlRight = BorderRadius.only(
-      topRight: Radius.circular(28), bottomRight: Radius.circular(28));
-  static const BorderRadius xlVertical = BorderRadius.vertical(
-      top: Radius.circular(28), bottom: Radius.circular(28));
-  static const BorderRadius xlHorizontal = BorderRadius.horizontal(
-      left: Radius.circular(28), right: Radius.circular(28));
-  static const BorderRadius xlTopLeft =
-      BorderRadius.only(topLeft: Radius.circular(28));
-  static const BorderRadius xlTopRight =
-      BorderRadius.only(topRight: Radius.circular(28));
-  static const BorderRadius xlBottomLeft =
-      BorderRadius.only(bottomLeft: Radius.circular(28));
-  static const BorderRadius xlBottomRight =
-      BorderRadius.only(bottomRight: Radius.circular(28));
-  static const BorderRadius xlTopLeftBottomRight = BorderRadius.only(
-      topLeft: Radius.circular(28), bottomRight: Radius.circular(28));
-  static const BorderRadius xlTopRightBottomLeft = BorderRadius.only(
-      topRight: Radius.circular(28), bottomLeft: Radius.circular(28));
-  static const BorderRadius xlTopMLeft = BorderRadius.only(
-      topLeft: Radius.circular(28), topRight: Radius.circular(16.0));
-  static const BorderRadius xlRightMBottom = BorderRadius.only(
-      topRight: Radius.circular(28), bottomLeft: Radius.circular(16.0));
-  static const BorderRadius xlTopMRight = BorderRadius.only(
-      topLeft: Radius.circular(28), bottomRight: Radius.circular(16.0));
-  static const BorderRadius xlBottomMBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(28), bottomRight: Radius.circular(16.0));
-  static const BorderRadius xlTopXslLeft = BorderRadius.only(
-      topLeft: Radius.circular(28), topRight: Radius.circular(22));
-  static const BorderRadius xlRightXslBottom = BorderRadius.only(
-      topRight: Radius.circular(28), bottomLeft: Radius.circular(22));
-  static const BorderRadius xlTopXslRight = BorderRadius.only(
-      topLeft: Radius.circular(28), bottomRight: Radius.circular(22));
-  static const BorderRadius xlBottomXslBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(28), bottomRight: Radius.circular(22));
-  static const BorderRadius xlTopSLeft = BorderRadius.only(
-      topLeft: Radius.circular(28), topRight: Radius.circular(24.0));
-  static const BorderRadius xlRightSBottom = BorderRadius.only(
-      topRight: Radius.circular(28), bottomLeft: Radius.circular(24.0));
-  static const BorderRadius xlTopSRight = BorderRadius.only(
-      topLeft: Radius.circular(28), bottomRight: Radius.circular(24.0));
-  static const BorderRadius xlBottomSBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(28), bottomRight: Radius.circular(24.0));
-  static const BorderRadius s = BorderRadius.all(Radius.circular(24.0));
-  static const BorderRadius sTop = BorderRadius.only(
-      topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0));
-  static const BorderRadius sBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(24.0), bottomRight: Radius.circular(24.0));
-  static const BorderRadius sLeft = BorderRadius.only(
-      topLeft: Radius.circular(24.0), bottomLeft: Radius.circular(24.0));
-  static const BorderRadius sRight = BorderRadius.only(
-      topRight: Radius.circular(24.0), bottomRight: Radius.circular(24.0));
-  static const BorderRadius sVertical = BorderRadius.vertical(
-      top: Radius.circular(24.0), bottom: Radius.circular(24.0));
-  static const BorderRadius sHorizontal = BorderRadius.horizontal(
-      left: Radius.circular(24.0), right: Radius.circular(24.0));
-  static const BorderRadius sTopLeft =
-      BorderRadius.only(topLeft: Radius.circular(24.0));
-  static const BorderRadius sTopRight =
-      BorderRadius.only(topRight: Radius.circular(24.0));
-  static const BorderRadius sBottomLeft =
-      BorderRadius.only(bottomLeft: Radius.circular(24.0));
-  static const BorderRadius sBottomRight =
-      BorderRadius.only(bottomRight: Radius.circular(24.0));
-  static const BorderRadius sTopLeftBottomRight = BorderRadius.only(
-      topLeft: Radius.circular(24.0), bottomRight: Radius.circular(24.0));
-  static const BorderRadius sTopRightBottomLeft = BorderRadius.only(
-      topRight: Radius.circular(24.0), bottomLeft: Radius.circular(24.0));
-  static const BorderRadius sTopMLeft = BorderRadius.only(
-      topLeft: Radius.circular(24.0), topRight: Radius.circular(16.0));
-  static const BorderRadius sRightMBottom = BorderRadius.only(
-      topRight: Radius.circular(24.0), bottomLeft: Radius.circular(16.0));
-  static const BorderRadius sTopMRight = BorderRadius.only(
-      topLeft: Radius.circular(24.0), bottomRight: Radius.circular(16.0));
-  static const BorderRadius sBottomMBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(24.0), bottomRight: Radius.circular(16.0));
-  static const BorderRadius sTopXslLeft = BorderRadius.only(
-      topLeft: Radius.circular(24.0), topRight: Radius.circular(22));
-  static const BorderRadius sRightXslBottom = BorderRadius.only(
-      topRight: Radius.circular(24.0), bottomLeft: Radius.circular(22));
-  static const BorderRadius sTopXslRight = BorderRadius.only(
-      topLeft: Radius.circular(24.0), bottomRight: Radius.circular(22));
-  static const BorderRadius sBottomXslBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(24.0), bottomRight: Radius.circular(22));
-  static const BorderRadius sTopXlLeft = BorderRadius.only(
-      topLeft: Radius.circular(24.0), topRight: Radius.circular(28));
-  static const BorderRadius sRightXlBottom = BorderRadius.only(
-      topRight: Radius.circular(24.0), bottomLeft: Radius.circular(28));
-  static const BorderRadius sTopXlRight = BorderRadius.only(
-      topLeft: Radius.circular(24.0), bottomRight: Radius.circular(28));
-  static const BorderRadius sBottomXlBottom = BorderRadius.only(
-      bottomLeft: Radius.circular(24.0), bottomRight: Radius.circular(28));
+  static const BorderRadius m = .all(Radius.circular(16.0));
+  static const BorderRadius mTop = .only(
+    topLeft: Radius.circular(16.0),
+    topRight: Radius.circular(16.0),
+  );
+  static const BorderRadius mBottom = .only(
+    bottomLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius mLeft = .only(
+    topLeft: Radius.circular(16.0),
+    bottomLeft: Radius.circular(16.0),
+  );
+  static const BorderRadius mRight = .only(
+    topRight: Radius.circular(16.0),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius mVertical = .vertical(
+    top: Radius.circular(16.0),
+    bottom: Radius.circular(16.0),
+  );
+  static const BorderRadius mHorizontal = .horizontal(
+    left: Radius.circular(16.0),
+    right: Radius.circular(16.0),
+  );
+  static const BorderRadius mTopLeft = .only(topLeft: Radius.circular(16.0));
+  static const BorderRadius mTopRight = .only(topRight: Radius.circular(16.0));
+  static const BorderRadius mBottomLeft = .only(
+    bottomLeft: Radius.circular(16.0),
+  );
+  static const BorderRadius mBottomRight = .only(
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius mTopLeftBottomRight = .only(
+    topLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius mTopRightBottomLeft = .only(
+    topRight: Radius.circular(16.0),
+    bottomLeft: Radius.circular(16.0),
+  );
+  static const BorderRadius mTopXslLeft = .only(
+    topLeft: Radius.circular(16.0),
+    topRight: Radius.circular(22),
+  );
+  static const BorderRadius mRightXslBottom = .only(
+    topRight: Radius.circular(16.0),
+    bottomLeft: Radius.circular(22),
+  );
+  static const BorderRadius mTopXslRight = .only(
+    topLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius mBottomXslBottom = .only(
+    bottomLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius mTopXlLeft = .only(
+    topLeft: Radius.circular(16.0),
+    topRight: Radius.circular(28),
+  );
+  static const BorderRadius mRightXlBottom = .only(
+    topRight: Radius.circular(16.0),
+    bottomLeft: Radius.circular(28),
+  );
+  static const BorderRadius mTopXlRight = .only(
+    topLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius mBottomXlBottom = .only(
+    bottomLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius mTopSLeft = .only(
+    topLeft: Radius.circular(16.0),
+    topRight: Radius.circular(24.0),
+  );
+  static const BorderRadius mRightSBottom = .only(
+    topRight: Radius.circular(16.0),
+    bottomLeft: Radius.circular(24.0),
+  );
+  static const BorderRadius mTopSRight = .only(
+    topLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius mBottomSBottom = .only(
+    bottomLeft: Radius.circular(16.0),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius xsl = .all(Radius.circular(22));
+  static const BorderRadius xslTop = .only(
+    topLeft: Radius.circular(22),
+    topRight: Radius.circular(22),
+  );
+  static const BorderRadius xslBottom = .only(
+    bottomLeft: Radius.circular(22),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius xslLeft = .only(
+    topLeft: Radius.circular(22),
+    bottomLeft: Radius.circular(22),
+  );
+  static const BorderRadius xslRight = .only(
+    topRight: Radius.circular(22),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius xslVertical = .vertical(
+    top: Radius.circular(22),
+    bottom: Radius.circular(22),
+  );
+  static const BorderRadius xslHorizontal = .horizontal(
+    left: Radius.circular(22),
+    right: Radius.circular(22),
+  );
+  static const BorderRadius xslTopLeft = .only(topLeft: Radius.circular(22));
+  static const BorderRadius xslTopRight = .only(topRight: Radius.circular(22));
+  static const BorderRadius xslBottomLeft = .only(
+    bottomLeft: Radius.circular(22),
+  );
+  static const BorderRadius xslBottomRight = .only(
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius xslTopLeftBottomRight = .only(
+    topLeft: Radius.circular(22),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius xslTopRightBottomLeft = .only(
+    topRight: Radius.circular(22),
+    bottomLeft: Radius.circular(22),
+  );
+  static const BorderRadius xslTopMLeft = .only(
+    topLeft: Radius.circular(22),
+    topRight: Radius.circular(16.0),
+  );
+  static const BorderRadius xslRightMBottom = .only(
+    topRight: Radius.circular(22),
+    bottomLeft: Radius.circular(16.0),
+  );
+  static const BorderRadius xslTopMRight = .only(
+    topLeft: Radius.circular(22),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius xslBottomMBottom = .only(
+    bottomLeft: Radius.circular(22),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius xslTopXlLeft = .only(
+    topLeft: Radius.circular(22),
+    topRight: Radius.circular(28),
+  );
+  static const BorderRadius xslRightXlBottom = .only(
+    topRight: Radius.circular(22),
+    bottomLeft: Radius.circular(28),
+  );
+  static const BorderRadius xslTopXlRight = .only(
+    topLeft: Radius.circular(22),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius xslBottomXlBottom = .only(
+    bottomLeft: Radius.circular(22),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius xslTopSLeft = .only(
+    topLeft: Radius.circular(22),
+    topRight: Radius.circular(24.0),
+  );
+  static const BorderRadius xslRightSBottom = .only(
+    topRight: Radius.circular(22),
+    bottomLeft: Radius.circular(24.0),
+  );
+  static const BorderRadius xslTopSRight = .only(
+    topLeft: Radius.circular(22),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius xslBottomSBottom = .only(
+    bottomLeft: Radius.circular(22),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius xl = .all(Radius.circular(28));
+  static const BorderRadius xlTop = .only(
+    topLeft: Radius.circular(28),
+    topRight: Radius.circular(28),
+  );
+  static const BorderRadius xlBottom = .only(
+    bottomLeft: Radius.circular(28),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius xlLeft = .only(
+    topLeft: Radius.circular(28),
+    bottomLeft: Radius.circular(28),
+  );
+  static const BorderRadius xlRight = .only(
+    topRight: Radius.circular(28),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius xlVertical = .vertical(
+    top: Radius.circular(28),
+    bottom: Radius.circular(28),
+  );
+  static const BorderRadius xlHorizontal = .horizontal(
+    left: Radius.circular(28),
+    right: Radius.circular(28),
+  );
+  static const BorderRadius xlTopLeft = .only(topLeft: Radius.circular(28));
+  static const BorderRadius xlTopRight = .only(topRight: Radius.circular(28));
+  static const BorderRadius xlBottomLeft = .only(
+    bottomLeft: Radius.circular(28),
+  );
+  static const BorderRadius xlBottomRight = .only(
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius xlTopLeftBottomRight = .only(
+    topLeft: Radius.circular(28),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius xlTopRightBottomLeft = .only(
+    topRight: Radius.circular(28),
+    bottomLeft: Radius.circular(28),
+  );
+  static const BorderRadius xlTopMLeft = .only(
+    topLeft: Radius.circular(28),
+    topRight: Radius.circular(16.0),
+  );
+  static const BorderRadius xlRightMBottom = .only(
+    topRight: Radius.circular(28),
+    bottomLeft: Radius.circular(16.0),
+  );
+  static const BorderRadius xlTopMRight = .only(
+    topLeft: Radius.circular(28),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius xlBottomMBottom = .only(
+    bottomLeft: Radius.circular(28),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius xlTopXslLeft = .only(
+    topLeft: Radius.circular(28),
+    topRight: Radius.circular(22),
+  );
+  static const BorderRadius xlRightXslBottom = .only(
+    topRight: Radius.circular(28),
+    bottomLeft: Radius.circular(22),
+  );
+  static const BorderRadius xlTopXslRight = .only(
+    topLeft: Radius.circular(28),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius xlBottomXslBottom = .only(
+    bottomLeft: Radius.circular(28),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius xlTopSLeft = .only(
+    topLeft: Radius.circular(28),
+    topRight: Radius.circular(24.0),
+  );
+  static const BorderRadius xlRightSBottom = .only(
+    topRight: Radius.circular(28),
+    bottomLeft: Radius.circular(24.0),
+  );
+  static const BorderRadius xlTopSRight = .only(
+    topLeft: Radius.circular(28),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius xlBottomSBottom = .only(
+    bottomLeft: Radius.circular(28),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius s = .all(Radius.circular(24.0));
+  static const BorderRadius sTop = .only(
+    topLeft: Radius.circular(24.0),
+    topRight: Radius.circular(24.0),
+  );
+  static const BorderRadius sBottom = .only(
+    bottomLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius sLeft = .only(
+    topLeft: Radius.circular(24.0),
+    bottomLeft: Radius.circular(24.0),
+  );
+  static const BorderRadius sRight = .only(
+    topRight: Radius.circular(24.0),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius sVertical = .vertical(
+    top: Radius.circular(24.0),
+    bottom: Radius.circular(24.0),
+  );
+  static const BorderRadius sHorizontal = .horizontal(
+    left: Radius.circular(24.0),
+    right: Radius.circular(24.0),
+  );
+  static const BorderRadius sTopLeft = .only(topLeft: Radius.circular(24.0));
+  static const BorderRadius sTopRight = .only(topRight: Radius.circular(24.0));
+  static const BorderRadius sBottomLeft = .only(
+    bottomLeft: Radius.circular(24.0),
+  );
+  static const BorderRadius sBottomRight = .only(
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius sTopLeftBottomRight = .only(
+    topLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(24.0),
+  );
+  static const BorderRadius sTopRightBottomLeft = .only(
+    topRight: Radius.circular(24.0),
+    bottomLeft: Radius.circular(24.0),
+  );
+  static const BorderRadius sTopMLeft = .only(
+    topLeft: Radius.circular(24.0),
+    topRight: Radius.circular(16.0),
+  );
+  static const BorderRadius sRightMBottom = .only(
+    topRight: Radius.circular(24.0),
+    bottomLeft: Radius.circular(16.0),
+  );
+  static const BorderRadius sTopMRight = .only(
+    topLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius sBottomMBottom = .only(
+    bottomLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(16.0),
+  );
+  static const BorderRadius sTopXslLeft = .only(
+    topLeft: Radius.circular(24.0),
+    topRight: Radius.circular(22),
+  );
+  static const BorderRadius sRightXslBottom = .only(
+    topRight: Radius.circular(24.0),
+    bottomLeft: Radius.circular(22),
+  );
+  static const BorderRadius sTopXslRight = .only(
+    topLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius sBottomXslBottom = .only(
+    bottomLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(22),
+  );
+  static const BorderRadius sTopXlLeft = .only(
+    topLeft: Radius.circular(24.0),
+    topRight: Radius.circular(28),
+  );
+  static const BorderRadius sRightXlBottom = .only(
+    topRight: Radius.circular(24.0),
+    bottomLeft: Radius.circular(28),
+  );
+  static const BorderRadius sTopXlRight = .only(
+    topLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(28),
+  );
+  static const BorderRadius sBottomXlBottom = .only(
+    bottomLeft: Radius.circular(24.0),
+    bottomRight: Radius.circular(28),
+  );
 }
