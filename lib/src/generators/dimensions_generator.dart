@@ -8,12 +8,43 @@ import 'package:dimengen/src/templates/insets_template.dart';
 import 'package:dimengen/src/templates/spaces_template.dart';
 import 'package:dimengen/src/utils/extractor.dart';
 import 'package:dimengen/src/utils/header.dart' show defaultHeader;
-import 'package:dimengen/src/utils/recase.dart';
 import 'package:dimengen/src/utils/resolver.dart';
 import 'package:source_gen/source_gen.dart' hide Generator;
 
-/// Generates a class with static constants for various dimension configurations.
+/// Configuration for a template type that can be generated.
+class _TemplateConfig {
+  const _TemplateConfig({
+    required this.template,
+    required this.nameKey,
+    required this.generateKey,
+  });
+
+  final Template template;
+  final String nameKey;
+  final String generateKey;
+}
+
+/// Generates classes with static constants for various dimension configurations.
 class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
+  /// Configuration for all available template types.
+  static final _templateConfigs = [
+    _TemplateConfig(
+      template: InsetsTemplate(),
+      nameKey: 'insetsName',
+      generateKey: 'generateInsets',
+    ),
+    _TemplateConfig(
+      template: SpacesTemplate(),
+      nameKey: 'spacesName',
+      generateKey: 'generateSpaces',
+    ),
+    _TemplateConfig(
+      template: BordersTemplate(),
+      nameKey: 'bordersName',
+      generateKey: 'generateBorders',
+    ),
+  ];
+
   @override
   Future<String> generateForAnnotatedElement(
     Element element,
@@ -27,41 +58,43 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
       ...extractElementValues(element as ClassElement),
     };
 
-    String generate(Template template, String clazz) {
-      final generateClass = annotation.read('generate${clazz.pascalCase}');
+    final generatedClasses = _templateConfigs
+        .map((config) => _generateClass(config, annotation, fields))
+        .where((code) => code.isNotEmpty)
+        .toList();
 
-      if (!generateClass.boolValue) {
-        return '';
-      }
-
-      final className = resolveClassName('${clazz}Name', annotation);
-
-      final buffer = StringBuffer();
-
-      buffer
-        ..writeln('''
-        abstract class $className {
-            const $className._();\n
-      ''')
-        ..writeln(template.generateFor(fields))
-        ..writeln('\n}');
-
-      return buffer.toString();
-    }
-
-    final result = [
-      generate(InsetsTemplate(), 'insets'),
-      generate(SpacesTemplate(), 'spaces'),
-      generate(BordersTemplate(), 'borders'),
-    ];
-
-    if (result.isEmpty) {
+    if (generatedClasses.isEmpty) {
       return '';
     }
 
     final buffer = StringBuffer()
       ..writeln(defaultHeader)
-      ..writeln(result.join('\n\n'));
+      ..writeln(generatedClasses.join('\n\n'));
+
+    return buffer.toString();
+  }
+
+  /// Generates a single class for the given template configuration.
+  String _generateClass(
+    _TemplateConfig config,
+    ConstantReader annotation,
+    Map<String, String> fields,
+  ) {
+    final shouldGenerate = annotation.read(config.generateKey);
+
+    if (!shouldGenerate.boolValue) {
+      return '';
+    }
+
+    final className = resolveClassName(config.nameKey, annotation);
+    final classContent = config.template.generateFor(fields);
+
+    final buffer = StringBuffer()
+      ..writeln('abstract class $className {')
+      ..writeln('  const $className._();')
+      ..writeln()
+      ..writeln(classContent)
+      ..writeln('}');
 
     return buffer.toString();
   }

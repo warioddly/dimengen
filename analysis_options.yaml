@@ -13,3 +13,7 @@ linter:
     - prefer_single_quotes
     - avoid_unnecessary_containers
     - public_member_api_docs
+
+formatter:
+  trailing_commas: preserve
+  page_width: 120

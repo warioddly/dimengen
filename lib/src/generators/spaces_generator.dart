@@ -5,11 +5,9 @@ import 'package:dimengen/src/templates/spaces_template.dart';
 
 /// Generates a class with static constants for various spacing configurations.
 class SpacesGenerator extends Generator<Spacegen> {
-
   @override
   Template get template => SpacesTemplate();
 
   @override
   String get metaName => 'Spacegen';
-
 }
