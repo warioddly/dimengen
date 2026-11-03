@@ -4,12 +4,12 @@ import 'package:dimengen/src/utils/recase.dart';
 /// Template for generating inset configurations.
 class InsetsTemplate extends Template {
   @override
-  String generateFor(Map<String, String> fields) {
+  String generateFor(Map<String, String> fields, {bool generateCombined = true}) {
     final buffer = StringBuffer();
 
     for (final MapEntry(:key, :value) in fields.entries) {
       _generateSingleInsets(buffer, key, value);
-      _generateCombinedInsets(buffer, key, value, fields);
+      if (generateCombined) _generateCombinedInsets(buffer, key, value, fields);
     }
 
     return buffer.toString();

@@ -4,13 +4,13 @@ import 'package:dimengen/src/utils/recase.dart';
 /// Template for generating border radius configurations.
 class BordersTemplate extends Template {
   @override
-  String generateFor(Map<String, String> fields) {
+  String generateFor(Map<String, String> fields, {bool generateCombined = true}) {
     final buffer = StringBuffer();
 
     for (final MapEntry(:key, :value) in fields.entries) {
       final radiusValue = _formatRadius(value);
       _generateSingleBorders(buffer, key, radiusValue);
-      _generateCombinedBorders(buffer, key, radiusValue, fields);
+      if (generateCombined) _generateCombinedBorders(buffer, key, radiusValue, fields);
     }
 
     return buffer.toString();
