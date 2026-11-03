@@ -17,11 +17,13 @@ class _TemplateConfig {
     required this.template,
     required this.nameKey,
     required this.generateKey,
+    this.combinedKey,
   });
 
   final Template template;
   final String nameKey;
   final String generateKey;
+  final String? combinedKey;
 }
 
 /// Generates classes with static constants for various dimension configurations.
@@ -32,6 +34,7 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
       template: InsetsTemplate(),
       nameKey: 'insetsName',
       generateKey: 'generateInsets',
+      combinedKey: 'generateCombinedInsets',
     ),
     _TemplateConfig(
       template: SpacesTemplate(),
@@ -42,6 +45,7 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
       template: BordersTemplate(),
       nameKey: 'bordersName',
       generateKey: 'generateBorders',
+      combinedKey: 'generateCombinedBorders',
     ),
   ];
 
@@ -87,7 +91,9 @@ class DimensionsGenerator extends GeneratorForAnnotation<Dimengen> {
     }
 
     final className = resolveClassName(config.nameKey, annotation);
-    final classContent = config.template.generateFor(fields);
+    final combinedKey = config.combinedKey;
+    final generateCombined = combinedKey == null || annotation.read(combinedKey).boolValue;
+    final classContent = config.template.generateFor(fields, generateCombined: generateCombined);
 
     final buffer = StringBuffer()
       ..writeln('abstract class $className {')

@@ -3,7 +3,7 @@ import 'package:dimengen/src/templates/_template.dart';
 /// Template for generating space configurations.
 class SpacesTemplate extends Template {
   @override
-  String generateFor(Map<String, String> values) {
+  String generateFor(Map<String, String> values, {bool generateCombined = false}) {
     final buffer = StringBuffer();
 
     for (final MapEntry(:key, :value) in values.entries) {

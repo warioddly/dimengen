@@ -103,7 +103,8 @@ Customize the generated class names and control what is generated:
 ```
 @Dimengen(
   spacesName: 'DesignSpaces',
-  generateInsets: false,
+  generateCombinedInsets: false,
+  generateCombinedBorders: true,
 )
 
 // or
